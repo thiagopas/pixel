@@ -1,8 +1,9 @@
-<canvas id="snapshot" width=320 height=240></canvas><canvas id="lines" width=320 height=240></canvas><br>
-<video id="player" controls autoplay  width=320 height=240></video>
+<canvas id="lines" width=640 height=480></canvas><br>
 <button id="capture">Capture</button>
-<button id="clear">Clear</button><br>
+<button id="clear">Clear</button>
 <button id="line">Line</button><br>
+<video id="player" controls autoplay  width=320 height=240></video>
+<canvas id="snapshot" width=320 height=240></canvas><br>
 <textarea id="pixelidx" rows=30 cols=30></textarea>
 
 <script>
@@ -20,6 +21,7 @@
   var x_old = 0;
   var y_old = 0;
   var line_active = false;
+  var size_ratio = 2;
   
   w = snapshotCanvas.width
   h = snapshotCanvas.height
@@ -41,17 +43,18 @@
     context.drawImage(player, 0, 0, snapshotCanvas.width, 
         snapshotCanvas.height);
 		
-	imgdata = context.getImageData(0,0,320,240)	
+	imgdata = context.getImageData(0,0,w,h)	
 	red = new Int16Array(w*h)	
 	for (i = 0; i < w*h*4; i=i+4){
 	red[i/4] = imgdata.data[i];
 	newimgdata.data[i+3] = 255;
 	}
 	maxred = Math.max(... red);		
-	if (maxred > 180){
+	active_now = false;
+	if (maxred > 220){
 		pixelidx.value = '';
-		idxmred = red.indexOf(maxred);
-		while (idxmred > -1){
+		idxmred = red.indexOf(maxred);		
+		while (idxmred > -1){			
 			if (imgdata.data[idxmred*4+1] < 220){
 			wmax = Math.floor(idxmred/w);
 			x_max = wmax;
@@ -59,7 +62,13 @@
 			y_max = hmax;
 			pixelidx.value += maxred +','+imgdata.data[idxmred*4+1]+','+imgdata.data[idxmred*4+2] + ' at '+ idxmred +' (' + wmax + ', ' + hmax+')\n';
 			
-			drawLine();
+			active_now = true;
+			if (line_active == true){
+				drawLine(x_max, y_max, x_old, y_old);
+			}
+			x_old = x_max;
+			y_old = y_max;
+			
 			newimgdata.data[4*idxmred] = 255;
 			newimgdata.data[4*idxmred+1] = 255;
 			newimgdata.data[4*idxmred+2] = 255;
@@ -81,21 +90,28 @@
 			newimgdata.data[4*idxmred+1280+2] = 255;
 			}
 			idxmred = red.indexOf(maxred, idxmred+1);
-		}		
+		}				
 	}
+	if (active_now == true){
+		line_active = true;
+	}else{
+		line_active = false;
+	}
+	
 	context.putImageData(newimgdata,0,0);
 	
   }
   
-  function drawLine(){	
+  function drawLine(x0, y0, x1, y1){	
+	var x0_ = 2*x0
+	var y0_ = 2*(w-y0)
+	var x1_ = 2*x1
+	var y1_ = 2*(w-y1)
 	ctx.beginPath();
 	ctx.strokeStyle = "#FF0000";
-	ctx.moveTo(y_old, x_old);
-	ctx.lineTo(y_max, x_max);
-	ctx.stroke();
-	
-	x_old = x_max;
-	y_old = y_max;
+	ctx.moveTo(y0_, x0_);
+	ctx.lineTo(y1_, x1_);
+	ctx.stroke();	
   }
   
   function turnItOn(){
