@@ -6,13 +6,17 @@
 <title>Video Capture Example</title>
 </head>
 
+<body>
+
+<input type=text id="thetext">
+
 <script type="text/javascript">
+thetext = document.getElementById('thetext');
+
 function motion(event){
-  document.writeln("Accelerometer: "
-    + event.accelerationIncludingGravity.x + ", "
+  thetext.value = event.accelerationIncludingGravity.x + ", "
     + event.accelerationIncludingGravity.y + ", "
-    + event.accelerationIncludingGravity.z
-  );
+    + event.accelerationIncludingGravity.z;
 }
 
 
@@ -23,6 +27,6 @@ if(window.DeviceMotionEvent){
 }
 </script>
 
-<body>
+
 </body>
 </html>
