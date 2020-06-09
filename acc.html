@@ -8,17 +8,28 @@
 
 <body>
 
-<input type=text id="thetext">
+<input type=text id="thetext"><br>
+<input type=text id="acctext"><br>
 
 <script type="text/javascript">
 thetext = document.getElementById('thetext');
+acctext = document.getElementById('acctext');
 ev = null;
+xacc = 0;
+yacc = 0;
+zacc = 0;
+
 
 function motion(event){
-  thetext.value = event.acceleration.x + ", "
+  thetext.value = event.acceleration.x + ", "  
     + event.acceleration.y + ", "
     + event.acceleration.z;
 	ev = event;
+	
+	xacc += event.acceleration.x * event.interval / 1000;
+	yacc += event.acceleration.y * event.interval / 1000;
+	zacc += event.acceleration.z * event.interval / 1000;
+	acctext.value = xacc + ", " + yacc + ", " + zacc;
 }
 
 
