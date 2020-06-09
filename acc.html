@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Video Capture Example</title>
+</head>
+
+<script type="text/javascript">
+function motion(event){
+  document.writeln("Accelerometer: "
+    + event.accelerationIncludingGravity.x + ", "
+    + event.accelerationIncludingGravity.y + ", "
+    + event.accelerationIncludingGravity.z
+  );
+}
+
+
+if(window.DeviceMotionEvent){
+  window.addEventListener("devicemotion", motion, false);
+}else{
+  console.log("DeviceMotionEvent is not supported");
+}
+</script>
+
+<body>
+</body>
+</html>
