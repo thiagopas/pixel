@@ -12,11 +12,13 @@
 
 <script type="text/javascript">
 thetext = document.getElementById('thetext');
+ev = null;
 
 function motion(event){
-  thetext.value = event.accelerationIncludingGravity.x + ", "
-    + event.accelerationIncludingGravity.y + ", "
-    + event.accelerationIncludingGravity.z;
+  thetext.value = event.acceleration.x + ", "
+    + event.acceleration.y + ", "
+    + event.acceleration.z;
+	ev = event;
 }
 
 
