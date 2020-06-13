@@ -102,6 +102,8 @@ function processVideo() {
     setTimeout(processVideo, delay);
 }
 
+someElement.addEventListener('touchstart', clearCD(), false);
+
 function myBlur(src, dst){
 	let ksize = new cv.Size(5, 5);
 	let anchor = new cv.Point(-1, -1);
