@@ -42,6 +42,9 @@ let txtMax = document.getElementById("txtMax");
 let txtMaxDst = document.getElementById("txtMaxDst");
 let canvasDraw = document.getElementById('canvasDraw');
 let canvasOutput = document.getElementById('canvasOutput');
+lineActive = false;
+xOld = 0;
+yOld = 0;
 	
 let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
 //let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
@@ -96,14 +99,24 @@ function processVideo() {
 	maxX = maxLoc.x;
 	maxY = maxLoc.y;
 	//txtMaxDst.value = cv.minMaxLoc(dst_thR).maxVal;
+	
 	if (cv.minMaxLoc(R).maxVal > th_monoch){
 		//drawCircle(maxX,maxY);
 		drawCircleCD(video.videoWidth-maxX,maxY);
+		if (lineActive == true){
+			drawLine(video.videoWidth-xOld, yOld, video.videoWidth-maxX, maxY);
+		}
+		lineActive = true;
+		xOld = maxX;
+		yOld = maxY;
+	}
+	else{
+		lineActive = false;
 	}
     setTimeout(processVideo, delay);
 }
 
-canvasDraw.addEventListener('touchstart', clearCD(), false);
+document.addEventListener('touchstart', clearCD(), false);
 
 function myBlur(src, dst){
 	let ksize = new cv.Size(5, 5);
@@ -172,6 +185,16 @@ document.onkeypress = function (e) {
 		clearCD();
 	}
 };
+
+function drawLine(x0, y0, x1, y1){	
+	var canvas = document.getElementById('canvasDraw');
+	var ctx = canvas.getContext('2d');
+	ctx.beginPath();
+	ctx.strokeStyle = "#FF0000";
+	ctx.moveTo(x0, y0);
+	ctx.lineTo(x1, y1);
+	ctx.stroke();	
+}
 
 // schedule first one.
 setTimeout(processVideo, 0);
