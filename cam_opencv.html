@@ -1,0 +1,206 @@
+<html>
+<head>
+	<title>Passarin's camera</title>
+<head>
+
+<body>
+
+<div id='container'>
+	<div id='layer0'>
+		<video id="videoInput" width=4096 height=2160></video>
+	</div>
+	<div id='layer1'>
+		<canvas id="canvasDraw"  width=4096 height=2160></canvas>
+	</div>
+</div>
+<!--input type=text id="txtMax"-->
+<br><br><br><BR><BR><BR><BR><br><br><br><BR><BR><BR><!--BR><br><br><br><BR><BR><BR><BR-->
+<br><BR><BR><BR><BR>
+<canvas id="canvasOutput"></canvas>
+<!--input type=text id="txtMaxDst"/-->
+<canvas id="canvasOutput2"></canvas>
+
+<script src="./opencv.js" type="text/javascript"></script>
+<script language=JavaScript>
+let video = document.getElementById("videoInput"); // video is the id of video tag
+navigator.mediaDevices.getUserMedia({ video: true, audio: false , video: {
+        width: { ideal: 4096 },
+		facingMode: { ideal: "environment" }
+    }})
+    .then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+    })
+    .catch(function(err) {
+        console.log("An error occurred! " + err);
+    });
+
+let rgbaPlanes = new cv.MatVector();
+let RmG = new cv.Mat();
+let txtMax = document.getElementById("txtMax");
+let txtMaxDst = document.getElementById("txtMaxDst");
+let canvasDraw = document.getElementById('canvasDraw');
+let canvasOutput = document.getElementById('canvasOutput');
+	
+let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+//let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
+let cap = new cv.VideoCapture(video);
+let dst_thR = new cv.Mat()
+//let dst_thG = new cv.Mat()
+//let dst_thB = new cv.Mat()
+const FPS = 120;
+setres = false;
+function processVideo() {
+	if (setres == false){
+		if (video.videoHeight > 0){
+			video.height = video.videoHeight;
+			video.width = video.videoWidth;
+			canvasDraw.height = video.videoHeight;
+			canvasDraw.width = video.videoWidth;
+			canvasOutput.height = video.videoHeight;
+			canvasOutput.width = video.videoWidth;
+			src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+			setres = true;
+		}		
+	}
+    let begin = Date.now();
+    cap.read(src);
+	
+	cv.split(src, rgbaPlanes);
+	R = rgbaPlanes.get(0);		
+	//G = rgbaPlanes.get(1);		
+	//B = rgbaPlanes.get(2);	
+	
+	th_monoch = 250;
+	
+	//myBlur(R, dst_thR)
+	cv.threshold(R, dst_thR, th_monoch, 255, 0);
+	//cv.threshold(G, dst_thG, 150, 255, 1);
+	//cv.threshold(B, dst_thB, 150, 255, 1);
+	//RmG = R.mul(G, 1);
+	//cv.min(dst_thR, dst_thG, RmG);
+	//cv.min(RmG, dst_thB, RmG);
+	//cv.Laplacian(R, dst_thR, cv.CV_8UC4, 1, 1, 0, cv.BORDER_DEFAULT)
+	
+	//js_erode(RmG, RmG); 	
+	//cv.Canny(dst_thR, dst_thR, 100, 200, 3, true);	
+    //cv.imshow("canvasOutput", R);
+    // schedule next one.
+    let delay = 1000/FPS - (Date.now() - begin);
+	maxLoc = cv.minMaxLoc(R).maxLoc;
+	maxX = maxLoc.x;
+	maxY = maxLoc.y;
+	//txtMax.value = cv.minMaxLoc(R).maxVal;
+	maxLoc = cv.minMaxLoc(R).maxLoc;
+	maxX = maxLoc.x;
+	maxY = maxLoc.y;
+	//txtMaxDst.value = cv.minMaxLoc(dst_thR).maxVal;
+	if (cv.minMaxLoc(R).maxVal > th_monoch){
+		//drawCircle(maxX,maxY);
+		drawCircleCD(video.videoWidth-maxX,maxY);
+	}
+    setTimeout(processVideo, delay);
+}
+
+function myBlur(src, dst){
+	let ksize = new cv.Size(5, 5);
+	let anchor = new cv.Point(-1, -1);
+	// You can try more different parameters
+	cv.blur(src, dst, ksize, anchor, cv.BORDER_DEFAULT);
+}
+
+function drawCircle(x, y){
+      var canvas = document.getElementById('canvasOutput');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 20;
+
+      context.beginPath();
+      context.arc(x, y, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'green';
+      context.fill();
+      context.lineWidth = 5;
+      context.strokeStyle = '#330000';
+      context.stroke();
+}
+function drawCircleCD(x, y){
+      var canvas = document.getElementById('canvasDraw');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 5;
+
+      context.beginPath();
+      context.arc(x, y, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'black';
+      context.fill();
+      context.lineWidth = 5;
+      context.strokeStyle = '#330000';
+      // context.stroke();
+}
+function clearCD(){
+	var canvas = document.getElementById('canvasDraw');
+	const context = canvas.getContext('2d');
+	context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function js_erode(src, dst){
+	erosion_size = .2;
+	
+	// Create a structuring element
+	var erosion_type = cv.MORPH_RECT;
+	
+	var erosion_size = new cv.Size(2*erosion_size+1,
+							2*erosion_size+1);
+	
+	var element = cv.getStructuringElement(erosion_type, erosion_size);
+	
+	// Apply erosion or dilation on the image
+	cv.erode(src, dst, element) ;
+	
+	// Clean up
+	return dst;
+}
+
+document.onkeypress = function (e) {
+    e = e || window.event;
+    if(e.charCode == 32){
+		clearCD();
+	}
+};
+
+// schedule first one.
+setTimeout(processVideo, 0);
+</script>
+
+</body>
+
+<style>
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#layer0,
+#layer1 {  
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#layer1 {
+  z-index: 10;
+}
+#layer0 {
+  opacity: 50%;
+}
+
+#videoInput
+{
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+}
+</style>
+
+</html>
