@@ -106,9 +106,15 @@ function processVideo() {
 		if (lineActive == true){
 			drawLine(video.videoWidth-xOld, yOld, video.videoWidth-maxX, maxY);
 		}
+		if((maxX<20)&&(maxY<20)){
+			clearCD();
+		}
+		else{
 		lineActive = true;
-		xOld = maxX;
-		yOld = maxY;
+			xOld = maxX;
+			yOld = maxY;
+		}
+		
 	}
 	else{
 		lineActive = false;
