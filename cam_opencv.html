@@ -116,7 +116,7 @@ function processVideo() {
     setTimeout(processVideo, delay);
 }
 
-document.addEventListener('touchstart', clearCD(), false);
+window.addEventListener('touchstart', clearCD());
 
 function myBlur(src, dst){
 	let ksize = new cv.Size(5, 5);
