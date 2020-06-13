@@ -24,7 +24,7 @@
 <script language=JavaScript>
 let video = document.getElementById("videoInput"); // video is the id of video tag
 navigator.mediaDevices.getUserMedia({ video: true, audio: false , video: {
-        width: { ideal: 4096 },
+        width: { ideal: 800 },
 		facingMode: { ideal: "environment" }
     }})
     .then(function(stream) {
