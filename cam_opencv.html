@@ -10,13 +10,13 @@
 		<video id="videoInput" width=4096 height=2160></video>
 	</div>
 	<div id='layer1'>
-		<canvas id="canvasDraw"  width=4096 height=2160></canvas><br>
-		<button id="btnClear" onclick="clearCD()"><font size=7>CLEAR</font></button>
+		<canvas id="canvasDraw"  width=4096 height=2160></canvas><br>		
 	</div>
 </div>
 <!--input type=text id="txtMax"-->
 <br><br><br><BR><BR><BR><BR><br><br><br><BR><BR><BR><!--BR><br><br><br><BR><BR><BR><BR-->
-<br><BR><BR><BR><BR>
+<br><BR><BR><BR><BR><br><BR><BR><BR><BR><br><BR><BR><BR><BR><br><BR><BR><BR><BR>
+<button id="btnClear" onclick="clearCD()"><font size=7>CLEAR</font></button>
 <canvas id="canvasOutput"></canvas>
 <!--input type=text id="txtMaxDst"/-->
 <canvas id="canvasOutput2"></canvas>
@@ -136,7 +136,7 @@ function drawCircleCD(x, y){
 
       context.beginPath();
       context.arc(x, y, radius, 0, 2 * Math.PI, false);
-      context.fillStyle = 'black';
+      context.fillStyle = 'cyan';
       context.fill();
       context.lineWidth = 5;
       context.strokeStyle = '#330000';
@@ -190,12 +190,17 @@ setTimeout(processVideo, 0);
   position: absolute;
   top: 0;
   left: 0;
+  transform: rotateY(180deg);
 }
 #layer1 {
   z-index: 10;
 }
 #layer0 {
   opacity: 50%;
+}
+#video {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 <!--
 #videoInput
