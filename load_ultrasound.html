@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title> Load ultrasound data </title>
+		<script src="./opencv.js"></script>
+	</head>
+	<body>
+	<!-- The `multiple` attribute lets users select multiple files. -->
+		<input type="file" id="file-selector" accept='*.js'><br><br>
+		<button type='button' onclick='showBscan()'>Exibir B-scan</button><br><br>
+		<canvas id="canvasOutput" ></canvas>
+		<script>
+		  const fileSelector = document.getElementById('file-selector');
+		  fileSelector.addEventListener('change', (event) => {
+			fileList = event.target.files;			
+			
+			const reader = new FileReader();
+			reader.addEventListener('load', (event) => {
+				mytxt = event.target.result;
+				eval(mytxt);
+				
+			});
+			reader.readAsText(fileList[0]);
+			
+			
+		  });
+		  
+		  function showBscan(){
+			img_scale = new cv.Mat();
+			img_bscan = cv.matFromArray(g.length, g[0].length, cv.CV_32F, g.flat())
+			img_bscan.convertTo(img_scale, cv.CV_32F, 1, -Math.min(... img_bscan.data32F));
+			img_scale.convertTo(img_scale, cv.CV_32F, 1/Math.max(... img_scale.data32F), 0);
+			cv.imshow('canvasOutput', img_scale);
+		  }
+		  
+		  
+		</script>
+	</body>
+</html>
