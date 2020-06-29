@@ -2,13 +2,25 @@
 	<head>
 		<title> Load ultrasound data </title>
 		<script src="./opencv.js"></script>
+		<script src="./graph.js"></script>
 	</head>
 	<body>
 	<!-- The `multiple` attribute lets users select multiple files. -->
 		<input type="file" id="file-selector" accept='*.js'><br><br>
-		<button type='button' onclick='showBscan()'>Exibir B-scan</button><br><br>
-		<canvas id="canvasOutput" ></canvas>
+		<canvas id="canvasOutput" ></canvas><br><br>
+		A-scan: 
+		<select name="ascanidx" id="ascanidx" onchange='indexChanged()'>
+			<option value=0>0</option>
+			<option value=1>1</option>
+			<option value=2>2</option>
+		</select>
+		<br>		
+		<div id='a_max'></div>
+		<div id="graph"></div>
 		<script>
+		a_max = document.getElementById('a_max');
+		ascanidx = document.getElementById('ascanidx');
+		ascanidx.disabled = true;
 		  const fileSelector = document.getElementById('file-selector');
 		  fileSelector.addEventListener('change', (event) => {
 			fileList = event.target.files;			
@@ -16,7 +28,25 @@
 			const reader = new FileReader();
 			reader.addEventListener('load', (event) => {
 				mytxt = event.target.result;
-				eval(mytxt);
+				eval(mytxt);				
+				
+				showBscan();
+				
+				num_opt = ascanidx.options['length'];
+				for(i=0; i <= num_opt; i++){
+					ascanidx.remove(0);
+				}
+				
+				for(i=0; i <= g[0].length; i++){
+					var opt1 = document.createElement("option");
+					opt1.value = i;
+					opt1.text = i;
+					ascanidx.add(opt1, null);
+				}
+				
+				ascanidx.disabled = false;
+				
+				plotAscan(0);
 				
 			});
 			reader.readAsText(fileList[0]);
@@ -29,8 +59,45 @@
 			img_bscan = cv.matFromArray(g.length, g[0].length, cv.CV_32F, g.flat())
 			img_bscan.convertTo(img_scale, cv.CV_32F, 1, -Math.min(... img_bscan.data32F));
 			img_scale.convertTo(img_scale, cv.CV_32F, 1/Math.max(... img_scale.data32F), 0);
+			
+			let dst = new cv.Mat();
+			let dsize = new cv.Size(300, 300);
+			cv.resize(img_scale, img_scale, dsize, 0, 0, cv.INTER_NEAREST);			
 			cv.imshow('canvasOutput', img_scale);
 		  }
+		  
+		  
+		  function indexChanged(){
+			graph.clear();
+			plotAscan(ascanidx.value);
+		  }
+		  
+		  var graph = new Graph({
+			appendTo : "graph",
+			canvasWidth : 800,
+			canvasHeight : 300,
+			title : "A-scan",
+			xAxisTitle : "Sample",
+			yAxisTitle : "Amplitude (x A_max)"
+			}); 
+
+			var py = [], px = [];
+
+			function plotAscan(elemNum){				
+				g_transp = g[0].map((_, colIndex) => g.map(row => row[colIndex]));				
+				py = g_transp[elemNum];
+				pymax = Math.max(...py);
+				pymin = Math.min(...py);
+				maxabs = Math.max(pymax, -pymin);
+				
+				x = [];				
+				for (var x = 0; x < 400; x++) {
+					px.push(x);
+					py[x] = py[x]/maxabs;
+				}
+				a_max.innerText = 'A_max = ' + maxabs.toExponential();;
+				graph.plot(py, px);
+			}
 		  
 		  
 		</script>
