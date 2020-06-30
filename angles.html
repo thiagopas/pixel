@@ -1,6 +1,6 @@
 <html>
 <body>
-<div id='values_div'></div> 
+<div id='values_div'></div>
 	<script language='JavaScript'>
 	txt = document.getElementById('values_div');
 	window.addEventListener("deviceorientation", handleOrientation, true);
@@ -9,6 +9,23 @@
 		var alpha    = event.alpha;
 		var beta     = event.beta;
 		var gamma    = event.gamma;
+		
+		init_note = 440;
+		end_note = init_note*3;
+		
+		beta_t = beta;
+		if(beta_t < 0)
+			beta_t = 0;
+		else if(beta_t > 90)
+			beta_t = 90;
+		note = init_note + (end_note-init_note)beta_t/90;
+		
+		
+		/*var oscillator = audioCtx.createOscillator();
+		oscillator.type = 'square';
+		oscillator.frequency.value = frequency; // value in hertz
+		oscillator.connect(audioCtx.destination);
+		oscillator.start();*/
 
 		// Do stuff with the new orientation data
 		var currentdate = new Date(); 
@@ -18,8 +35,9 @@
                 + currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds();
-		txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate; 
+		txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note; 
 }
 	</script>
+<br><br>OK!
 </body>
 </html>
