@@ -1,0 +1,25 @@
+<html>
+<body>
+<div id='values_div'></div>
+	<script language='JavaScript'>
+	txt = document.getElementById('values_div');
+	window.addEventListener("deviceorientation", handleOrientation, true);
+		function handleOrientation(event) {
+		var absolute = event.absolute;
+		var alpha    = event.alpha;
+		var beta     = event.beta;
+		var gamma    = event.gamma;
+
+		// Do stuff with the new orientation data
+		var currentdate = new Date(); 
+				var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+		txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate; 
+}
+	</script>
+</body>
+</html>
