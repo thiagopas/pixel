@@ -2,6 +2,8 @@
 <body>
 <div id='values_div'></div>
 	<script language='JavaScript'>
+	started = false;
+	note = 440;
 	txt = document.getElementById('values_div');
 	window.addEventListener("deviceorientation", handleOrientation, true);
 		function handleOrientation(event) {
@@ -10,6 +12,7 @@
 		var beta     = event.beta;
 		var gamma    = event.gamma;
 		
+		if(started){
 		init_note = 440;
 		end_note = init_note*3;
 		
@@ -19,7 +22,8 @@
 		else if(beta_t > 90)
 			beta_t = 90;
 		note = init_note + (end_note-init_note)*beta_t/90;
-		
+		oscillator.frequency.value = note;
+		}
 		
 
 		// Do stuff with the new orientation data
@@ -33,10 +37,11 @@
 		txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note; 
 }
 
-		started = false;
+		
 		
 		function shutup(){
 			oscillator.stop();
+			started = false;
 		}
 		
 		function makenoise(){
@@ -49,7 +54,6 @@
 		oscillator.start();
 		started = true;
 			}
-			oscillator.start();
 		}
 	</script>
 <br><br><button id='btnstart' onclick='makenoise()'>Start</button>
