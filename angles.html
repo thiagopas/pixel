@@ -1,6 +1,6 @@
 <html>
 <body>
-<div id='values_div'></div> 
+<div id='values_div'></div>
 	<script language='JavaScript'>
 	txt = document.getElementById('values_div');
 	window.addEventListener("deviceorientation", handleOrientation, true);
@@ -18,7 +18,7 @@
 			beta_t = 0;
 		else if(beta_t > 90)
 			beta_t = 90;
-		note = init_note + (end_note-init_note)beta_t/90;
+		note = init_note + (end_note-init_note)*beta_t/90;
 		
 		
 		/*var oscillator = audioCtx.createOscillator();
