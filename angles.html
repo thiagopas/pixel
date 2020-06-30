@@ -2,7 +2,7 @@
 <body>
 <div id='values_div'></div>
 	<script language='JavaScript'>
-	txt = document.getElementById('values_div'); 
+	txt = document.getElementById('values_div');
 	window.addEventListener("deviceorientation", handleOrientation, true);
 		function handleOrientation(event) {
 		var absolute = event.absolute;
@@ -21,18 +21,6 @@
 		note = init_note + (end_note-init_note)*beta_t/90;
 		
 		
-		oscillator = audioCtx.createOscillator();
-		oscillator.type = 'square';
-		oscillator.frequency.value = frequency; // value in hertz
-		oscillator.connect(audioCtx.destination);
-		oscillator.start();
-		
-		function shutup(){
-			oscillator.stop();
-		}
-		function makenoise(){
-			oscillator.start();
-		}
 
 		// Do stuff with the new orientation data
 		var currentdate = new Date(); 
@@ -44,6 +32,25 @@
                 + currentdate.getSeconds();
 		txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note; 
 }
+
+		started = false;
+		
+		function shutup(){
+			oscillator.stop();
+		}
+		
+		function makenoise(){
+			if(!started){
+			audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+		oscillator = audioCtx.createOscillator();
+		oscillator.type = 'square';
+		oscillator.frequency.value = note; // value in hertz
+		oscillator.connect(audioCtx.destination);
+		oscillator.start();
+		started = true;
+			}
+			oscillator.start();
+		}
 	</script>
 <br><br><button id='btnstart' onclick='makenoise()'>Start</button>
 <button id='btnstop' onclick='shutup()'>Stop</button>
