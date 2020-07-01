@@ -17,13 +17,15 @@ body{
 }
 </style>
 	<script language='JavaScript'>
+	order_start = 0;
+	order_stop = 0;
 	started = false;
 	note = 440;
 	txt = document.getElementById('values_div');
 	
 	var el = document.getElementsByTagName("canvas")[0];
-	el.addEventListener("touchstart", makenoise, false);
-	el.addEventListener("touchend", shutup, false);
+	el.addEventListener("touchstart", touch_start, false);
+	el.addEventListener("touchend", touch_stop, false);
 	el.addEventListener('touchmove', ret_false, false);
 	el.addEventListener('touchcancel', ret_false, false);
 	
@@ -63,7 +65,25 @@ body{
 		txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note; 
 }
 
+		function touch_start(){
+			order_start++;
+		}
 		
+		function touch_stop(){
+			order_stop++;
+		}
+		
+		function while_1(){
+			if (order_start > 0){
+				order_start = 0;
+				makenoise();
+			}
+			if (order_stop > 0){
+				order_stop = 0;
+				shutup();
+			}
+			setTimeout(while_1, 10);
+		}
 		
 		function shutup(){
 			oscillator.stop();
@@ -81,8 +101,9 @@ body{
 				oscillator.start();
 			}
 		}
+	while_1();
 	</script>
-<br><br><button id='btnstart' onclick='makenoise()'>Start</button>
-<button id='btnstop' onclick='shutup()'>Stop</button>
+<br><br><button id='btnstart' onclick='touch_start()'>Start</button>
+<button id='btnstop' onclick='touch_stop()'>Stop</button>
 </body>
 </html>
