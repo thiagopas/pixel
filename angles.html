@@ -12,13 +12,19 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+
 </style>
+<br><br>
+<font size=7>
+<button id='btnstart' onclick='touch_btn()'><font size=7>Start</button>
 	<script language='JavaScript'>
 	order_start = 0;
 	order_stop = 0;
 	started = false;
 	note = 440;
+	btn_toggle = true;
 	txt = document.getElementById('values_div');
+	btnstart = document.getElementById('btnstart');
 	
 	/*var el = document.getElementsByTagName("canvas")[0];
 	el.addEventListener("touchstart", touch_start, false);
@@ -59,7 +65,8 @@ body{
                 + currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds();
-		txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note; 
+		//txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note;
+			txt.innerHTML = '<center><font size=7>' + Math.round(note) + ' Hz'; 
 }
 
 		function touch_start(){
@@ -87,6 +94,20 @@ body{
 			started = false;
 		}
 		
+		function touch_btn(){
+			if(btn_toggle){
+				btn_toggle = false;
+				btnstart.innerHTML = '<font size=7>Stop';
+				touch_start();
+			}
+			else{
+				btn_toggle = true;
+				btnstart.innerHTML = '<font size=7>Start';
+				touch_stop();
+			}
+		}
+		
+		
 		function makenoise(){
 			if(!started){
 				started = true;
@@ -100,10 +121,7 @@ body{
 		}
 	while_1();
 	</script>
-<br><br>
-<font size=7>
-<button id='btnstart' onclick='touch_start()'><font size=7>Start</button>
-<button id='btnstop' onclick='touch_stop()'><font size=7>Stop</button>
+
 </font>
 </body>
 </html>
