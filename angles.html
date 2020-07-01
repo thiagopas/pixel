@@ -1,9 +1,10 @@
 <html>
 <body>
-Change log: setTimeout 1
+Change log: timeSeries
+<center><br>
+<canvas id="chart" width="400" height="100"></canvas>
 <br>
 <div id='values_div'></div>
-<center>
 
 <style>
 body{
@@ -19,6 +20,7 @@ body{
 <br><br>
 <font size=7>
 <button id='btnstart' onclick='touch_btn()'><font size=7>Start</button>
+<script type="text/javascript" src="smoothie.js"></script>
 	<script language='JavaScript'>
 	order_start = 0;
 	order_stop = 0;
@@ -56,6 +58,7 @@ body{
 			beta_t = 90;
 		note = init_note + (end_note-init_note)*beta_t/90;
 		oscillator.frequency.value = note;
+		random.append(Date.now(), note);
 		}
 		
 
@@ -121,7 +124,15 @@ body{
 				oscillator.start();
 			}
 		}
+	var random = new TimeSeries();
+	function createTimeline() {
+        var chart = new SmoothieChart();
+        chart.addTimeSeries(random, { strokeStyle: 'rgba(0, 255, 0, 1)', fillStyle: 'rgba(0, 255, 0, 0.2)', lineWidth: 2 });
+        chart.streamTo(document.getElementById("chart"), 500);
+      }
+	  
 	while_1();
+	createTimeline();
 	</script>
 
 </font>
