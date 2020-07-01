@@ -2,10 +2,7 @@
 <body>
 <div id='values_div'></div>
 <center>
-<canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
-  Your browser does not support canvas.
-</canvas>
-<br> no select
+<br> touch
 <style>
 body{
     -webkit-touch-callout: none;
@@ -14,6 +11,7 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+	touch-action: manipulation;
 }
 </style>
 	<script language='JavaScript'>
@@ -21,7 +19,6 @@ body{
 	note = 440;
 	txt = document.getElementById('values_div');
 	
-	var el = document.getElementsByTagName("canvas")[0];
 	document.addEventListener("touchstart", makenoise, false);
 	document.addEventListener("touchend", shutup, false);
 	
@@ -61,18 +58,17 @@ body{
 		
 		function shutup(){
 			oscillator.stop();
-			started = false;
 		}
 		
 		function makenoise(){
 			if(!started){
-			audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-		oscillator = audioCtx.createOscillator();
-		oscillator.type = 'square';
-		oscillator.frequency.value = note; // value in hertz
-		oscillator.connect(audioCtx.destination);
-		oscillator.start();
-		started = true;
+				started = true;
+				audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+				oscillator = audioCtx.createOscillator();
+				oscillator.type = 'square';
+				oscillator.frequency.value = note; // value in hertz
+				oscillator.connect(audioCtx.destination);
+				oscillator.start();
 			}
 		}
 	</script>
