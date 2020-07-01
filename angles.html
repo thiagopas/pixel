@@ -1,8 +1,8 @@
 <html>
 <body>
-Change log: timeSeries
+Change log: intervals
 <center><br>
-<canvas id="chart" width="400" height="100"></canvas>
+<canvas id="chart" width="600" height="1000"></canvas>
 <br>
 <div id='values_div'></div>
 
@@ -129,6 +129,8 @@ body{
         var chart = new SmoothieChart();
         chart.addTimeSeries(random, { strokeStyle: 'rgba(0, 255, 0, 1)', fillStyle: 'rgba(0, 255, 0, 0.2)', lineWidth: 2 });
         chart.streamTo(document.getElementById("chart"), 500);
+		random.append(Date.now(), 420);
+		random.append(Date.now(), 1340);
       }
 	  
 	while_1();
