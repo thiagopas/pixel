@@ -5,7 +5,7 @@
 <canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
   Your browser does not support canvas.
 </canvas>
-<br> no double touch
+<br> canvas
 <style>
 body{
     -webkit-touch-callout: none;
@@ -22,10 +22,10 @@ body{
 	txt = document.getElementById('values_div');
 	
 	var el = document.getElementsByTagName("canvas")[0];
-	document.addEventListener("touchstart", makenoise, false);
-	document.addEventListener("touchend", shutup, false);
-	document.addEventListener('touchmove', ret_false, false);
-	document.addEventListener('touchcancel', ret_false, false);
+	el.addEventListener("touchstart", makenoise, false);
+	el.addEventListener("touchend", shutup, false);
+	el.addEventListener('touchmove', ret_false, false);
+	el.addEventListener('touchcancel', ret_false, false);
 	
 	function ret_false(){
 		return false;
