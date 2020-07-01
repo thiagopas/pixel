@@ -2,10 +2,7 @@
 <body>
 <div id='values_div'></div>
 <center>
-<canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
-  Your browser does not support canvas.
-</canvas>
-<br> canvas
+
 <style>
 body{
     -webkit-touch-callout: none;
@@ -23,11 +20,11 @@ body{
 	note = 440;
 	txt = document.getElementById('values_div');
 	
-	var el = document.getElementsByTagName("canvas")[0];
+	/*var el = document.getElementsByTagName("canvas")[0];
 	el.addEventListener("touchstart", touch_start, false);
 	el.addEventListener("touchend", touch_stop, false);
 	el.addEventListener('touchmove', ret_false, false);
-	el.addEventListener('touchcancel', ret_false, false);
+	el.addEventListener('touchcancel', ret_false, false);*/
 	
 	function ret_false(){
 		return false;
@@ -103,7 +100,10 @@ body{
 		}
 	while_1();
 	</script>
-<br><br><button id='btnstart' onclick='touch_start()'>Start</button>
-<button id='btnstop' onclick='touch_stop()'>Stop</button>
+<br><br>
+<font size=7>
+<button id='btnstart' onclick='touch_start()'><font size=7>Start</button>
+<button id='btnstop' onclick='touch_stop()'><font size=7>Stop</button>
+</font>
 </body>
 </html>
