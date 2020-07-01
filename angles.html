@@ -1,17 +1,19 @@
 <html>
 <body>
 <div id='values_div'></div>
+<center>
 <canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
   Your browser does not support canvas.
 </canvas>
+<br> document
 	<script language='JavaScript'>
 	started = false;
 	note = 440;
 	txt = document.getElementById('values_div');
 	
 	var el = document.getElementsByTagName("canvas")[0];
-	el.addEventListener("touchstart", makenoise, false);
-	el.addEventListener("touchend", shutup, false);
+	document.addEventListener("touchstart", makenoise, false);
+	document.addEventListener("touchend", shutup, false);
 	
 	window.addEventListener("deviceorientation", handleOrientation, true);
 		function handleOrientation(event) {
