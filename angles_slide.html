@@ -2,15 +2,15 @@
 <body>
 Change log: slider
 <center>
-<div class="slider-wrapper"> 
+<div class="slider-wrapper">
 	<input type="range" min="440" max="1320" step="5" list="steplist" id='noteslider'>
 	<datalist id="steplist">
 		<option value="440" label="A">
 		<option value="1320" label="A">
 	</datalist>
 </div>
+<br>
 <div id='values_div'></div>
-
 <style>
 body{
     -webkit-touch-callout: none;
@@ -21,19 +21,49 @@ body{
     user-select: none;
 }
 
+
 .slider-wrapper {
   display: inline-block;
   width: 20px;
-  height: 600;
+  height: 1000;
   padding: 0;
 }
 .slider-wrapper input {
-  width: 600px;
+  width: 1000px;
   height: 20px;
   margin: 0;
-  transform-origin: 290px 290px;
+  transform-origin: 500px 500px;
   transform: rotate(-90deg);
 }
+
+input[type=range] {
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 1.3px;
+  height: 8.4px;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  margin-top: -21px;
+  width: 16px;
+  height: 100px;
+  background: #0000ff;
+  border: 1px solid #000000;
+  border-radius: 7px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+
 
 </style>
 <font size=7>
