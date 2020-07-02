@@ -1,6 +1,6 @@
 <html>
 <body>
-Change log: slider
+Change log: power
 <center>
 <div class="slider-wrapper">
 	<input type="range" min="440" max="1320" step="5" list="steplist" id='noteslider'>
@@ -104,7 +104,8 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 			beta_t = 0;
 		else if(beta_t > 90)
 			beta_t = 90;
-		note = init_note + (end_note-init_note)*beta_t/90;
+		expon = 24*beta_t/90;
+		note = init_note * Math.pow(1.05946309436, expon);
 		oscillator.frequency.value = note;
 		}
 		
