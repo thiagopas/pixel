@@ -1,0 +1,155 @@
+<html>
+<body>
+Change log: slider
+<center>
+<div class="slider-wrapper">
+	<input type="range" min="440" max="1320" step="5" list="steplist" id='noteslider'>
+	<datalist id="steplist">
+		<option value="440" label="A">
+		<option value="1320" label="A">
+	</datalist>
+</div>
+<div id='values_div'></div>
+
+<style>
+body{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.slider-wrapper {
+  display: inline-block;
+  width: 20px;
+  height: 600;
+  padding: 0;
+}
+.slider-wrapper input {
+  width: 600px;
+  height: 20px;
+  margin: 0;
+  transform-origin: 290px 290px;
+  transform: rotate(-90deg);
+}
+
+</style>
+<font size=7>
+<button id='btnstart' onclick='touch_btn()'><font size=7>Start</button>
+<script type="text/javascript" src="smoothie.js"></script>
+	<script language='JavaScript'>
+	order_start = 0;
+	order_stop = 0;
+	started = false;
+	note = 440;
+	btn_toggle = true;
+	txt = document.getElementById('values_div');
+	btnstart = document.getElementById('btnstart');
+	
+	/*var el = document.getElementsByTagName("canvas")[0];
+	el.addEventListener("touchstart", touch_start, false);
+	el.addEventListener("touchend", touch_stop, false);
+	el.addEventListener('touchmove', ret_false, false);
+	el.addEventListener('touchcancel', ret_false, false);*/
+	
+	function ret_false(){
+		return false;
+	}
+	
+	window.addEventListener("deviceorientation", handleOrientation, true);
+		function handleOrientation(event) {
+		var absolute = event.absolute;
+		var alpha    = event.alpha;
+		var beta     = event.beta;
+		var gamma    = event.gamma;
+		
+		if(started){
+		init_note = 440;
+		end_note = init_note*3;
+		
+		beta_t = beta;
+		if(beta_t < 0)
+			beta_t = 0;
+		else if(beta_t > 90)
+			beta_t = 90;
+		note = init_note + (end_note-init_note)*beta_t/90;
+		oscillator.frequency.value = note;
+		}
+		
+
+		// Do stuff with the new orientation data
+		var currentdate = new Date(); 
+				var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+		//txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note;
+			txt.innerHTML = '<center><font size=7>' + Math.round(note) + ' Hz'; 
+			slider.value = note;
+}
+
+		function touch_start(){
+			order_start++;
+		}
+		
+		function touch_stop(){
+			order_stop++;
+		}
+		
+		function while_1(){
+			if (order_start > 0){
+				order_start = 0;
+				makenoise();
+			}
+			if (order_stop > 0){
+				order_stop = 0;
+				shutup();
+			}
+			setTimeout(while_1, 1);
+		}
+		
+		function shutup(){
+			oscillator.stop();
+			started = false;
+		}
+		
+		function touch_btn(){
+			if(btn_toggle){
+				btn_toggle = false;
+				btnstart.innerHTML = '<font size=7>Stop';
+				touch_start();
+			}
+			else{
+				btn_toggle = true;
+				btnstart.innerHTML = '<font size=7>Start';
+				touch_stop();
+			}
+		}
+		
+		
+		function makenoise(){
+			if(!started){
+				started = true;
+				audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+				oscillator = audioCtx.createOscillator();
+				oscillator.type = 'square';
+				oscillator.frequency.value = note; // value in hertz
+				oscillator.connect(audioCtx.destination);
+				oscillator.start();
+			}
+		}
+	
+	slider = document.getElementsByTagName('input');
+	slider = slider[0];
+	
+	while_1();
+	
+	</script>
+
+</font>
+</body>
+</html>
