@@ -7,6 +7,7 @@
 	<body>
 	<!-- The `multiple` attribute lets users select multiple files. -->
 		<input type="file" id="file-selector" accept='*.js'><br><br>
+		<table><tr valign=top><td>
 		<canvas id="canvasOutput" ></canvas><br><br>
 		A-scan: 
 		<select name="ascanidx" id="ascanidx" onchange='indexChanged()'>
@@ -16,9 +17,17 @@
 		</select>
 		<br>		
 		<div id='a_max'></div>
+		</td>
+		<td>
+		<button id='btnSAFT' disabled=true onclick='processSaft()'>>> SAFT >></button>
+		</td>
+		<td>				
+		<canvas id="canvasSaft"></canvas>
+		</td></tr></table>
 		<div id="graph"></div>
 		<script>
 		a_max = document.getElementById('a_max');
+		btnSAFT = document.getElementById('btnSAFT');
 		ascanidx = document.getElementById('ascanidx');
 		ascanidx.disabled = true;
 		  const fileSelector = document.getElementById('file-selector');
@@ -45,6 +54,7 @@
 				}
 				
 				ascanidx.disabled = false;
+				btnSAFT.disabled = false;
 				
 				plotAscan(0);
 				
@@ -63,7 +73,19 @@
 			let dst = new cv.Mat();
 			let dsize = new cv.Size(300, 300);
 			cv.resize(img_scale, img_scale, dsize, 0, 0, cv.INTER_NEAREST);			
-			cv.imshow('canvasOutput', img_scale);
+			cv.imshow('canvasOutput', img_scale);		  
+		  }
+		  
+		  function showSaft(f){
+			img_scale = new cv.Mat();
+			img_saft = cv.matFromArray(f.length, f[0].length, cv.CV_32F, f.flat())
+			img_saft.convertTo(img_scale, cv.CV_32F, 1, -Math.min(... img_saft.data32F));
+			img_scale.convertTo(img_scale, cv.CV_32F, 1/Math.max(... img_scale.data32F), 0);
+			
+			let dst = new cv.Mat();
+			let dsize = new cv.Size(300, 300);
+			cv.resize(img_scale, img_scale, dsize, 0, 0, cv.INTER_NEAREST);			
+			cv.imshow('canvasSaft', img_scale);
 		  }
 		  
 		  
@@ -97,6 +119,33 @@
 				}
 				a_max.innerText = 'A_max = ' + maxabs.toExponential();;
 				graph.plot(py, px);
+			}
+			
+			function saft(g, x, z, cl, T){
+				// Create vector f 
+				var f = new Array(g.length); for(i in g) f[i] = new Array(g[0].length).fill(0);
+				
+				for (i_column in g[0]){
+					for (i_line in g){
+						current_z = z[i_line];
+						for (i_xcd in x){
+							relative_dist = Math.sqrt(Math.pow(current_z,2) + Math.pow((x[i_xcd]-x[i_column]), 2));
+							relative_time = relative_dist*2/cl;
+							relative_index = Math.round(relative_time/T) - pi;
+							if ((relative_index >= 0) && (relative_index < pf-pi))                    
+								f[i_line][i_column] += g[relative_index][i_xcd];
+						}
+					}
+					// f[:,i_column] = np.abs(scipy.signal.hilbert(f[:,i_column]));
+				}
+				return f;
+				
+			}
+			
+			function processSaft(){
+				var f = saft(g, x, z, cl, T);
+				showSaft(f);
+				
 			}
 		  
 		  
