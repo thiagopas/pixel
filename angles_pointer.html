@@ -1,0 +1,238 @@
+<html>
+<body onload='init()'>
+Change log: power<br>
+<canvas id='canvasbg' width=600 height=600 style="border:1px solid #000000;"></canvas>
+<canvas id='canvaspointer' width=600 height=600 style="border:1px solid #000000;"></canvas>
+
+<center>
+<div class="slider-wrapper">
+	<input type="range" min="440" max="1320" step="5" list="steplist" id='noteslider'>
+	<datalist id="steplist">
+		<option value="440" label="A">
+		<option value="1320" label="A">
+	</datalist>
+</div>
+<br><br>
+<div id='values_div'></div>
+<div id='notechar'></div>
+<style>
+body{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+</style>
+<font size=7>
+<button id='btnstart' onclick='touch_btn()'><font size=7>Start</button>
+<script type="text/javascript" src="smoothie.js"></script>
+	<script language='JavaScript'>
+	
+	function init(){
+		N_notes = 25;
+		canvaspointer.style.top = canvasbg.offsetTop;
+		canvaspointer.style.left = canvasbg.offsetLeft;
+		canvaspointer.style.position = 'absolute';
+		drawAngles();
+	}
+	
+	strnotes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
+	order_start = 0;
+	order_stop = 0;
+	started = false;
+	note = 440;
+	btn_toggle = true;
+	txt = document.getElementById('values_div');
+	btnstart = document.getElementById('btnstart');
+	notechar = document.getElementById('notechar');
+	canvasbg = document.getElementById('canvasbg');
+	canvaspointer = document.getElementById('canvaspointer');
+	
+	/*var el = document.getElementsByTagName("canvas")[0];
+	el.addEventListener("touchstart", touch_start, false);
+	el.addEventListener("touchend", touch_stop, false);
+	el.addEventListener('touchmove', ret_false, false);
+	el.addEventListener('touchcancel', ret_false, false);*/
+	
+	function ret_false(){
+		return false;
+	}
+	
+	window.addEventListener("deviceorientation", handleOrientation, true);
+		function handleOrientation(event) {
+		var absolute = event.absolute;
+		var alpha    = event.alpha;
+		var beta     = event.beta;
+		var gamma    = event.gamma;		
+		
+		
+		if(started){
+		init_note = 440;
+		end_note = init_note*3;
+		
+		beta_t = beta;
+		if(beta_t < 0)
+			beta_t = 0;
+		else if(beta_t > 90)
+			beta_t = 90;
+		expon = (N_notes-1)*beta_t/90;
+		index_note = Math.round(expon%12);
+		notechar.innerHTML = '<font size=7>' + index_note + ' - ' + strnotes[index_note];
+		note = init_note * Math.pow(1.05946309436, expon);
+		oscillator.frequency.value = note;
+		drawPointer(Math.PI*beta_t/180);
+		}
+		
+
+		// Do stuff with the new orientation data
+		var currentdate = new Date(); 
+				var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+		//txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note;
+			txt.innerHTML = '<center><font size=7>' + Math.round(note) + ' Hz'; 
+			slider.value = note;
+}
+
+		function touch_start(){
+			order_start++;
+		}
+		
+		function touch_stop(){
+			order_stop++;
+		}
+		
+		function while_1(){
+			if (order_start > 0){
+				order_start = 0;
+				makenoise();
+			}
+			if (order_stop > 0){
+				order_stop = 0;
+				shutup();
+			}
+			setTimeout(while_1, 1);
+		}
+		
+		function shutup(){
+			oscillator.stop();
+			started = false;
+		}
+		
+		function touch_btn(){
+			if(btn_toggle){
+				btn_toggle = false;
+				btnstart.innerHTML = '<font size=7>Stop';
+				touch_start();
+			}
+			else{
+				btn_toggle = true;
+				btnstart.innerHTML = '<font size=7>Start';
+				touch_stop();
+			}
+		}
+		
+		
+		function makenoise(){
+			if(!started){
+				started = true;
+				audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+				oscillator = audioCtx.createOscillator();
+				oscillator.type = 'square';
+				oscillator.frequency.value = note; // value in hertz
+				oscillator.connect(audioCtx.destination);
+				oscillator.start();
+			}
+		}
+	
+	document.onmousemove = handleMouseMove;
+    function handleMouseMove(event) {
+        var eventDoc, doc, body;
+
+        event = event || window.event; // IE-ism
+
+        // If pageX/Y aren't available and clientX/Y are,
+        // calculate pageX/Y - logic taken from jQuery.
+        // (This is to support old IE)
+        if (event.pageX == null && event.clientX != null) {
+            eventDoc = (event.target && event.target.ownerDocument) || document;
+            doc = eventDoc.documentElement;
+            body = eventDoc.body;
+
+            event.pageX = event.clientX +
+              (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+              (doc && doc.clientLeft || body && body.clientLeft || 0);
+            event.pageY = event.clientY +
+              (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+              (doc && doc.clientTop  || body && body.clientTop  || 0 );
+        }
+
+        x_filtered = 0;
+		if(event.pageX >= 0)
+			x_filtered = event.pageX/10;
+		e = new Object(null);
+		e.absolute = 0;
+		e.alpha = 0;
+		e.beta = x_filtered;
+		e.gamma = 0;
+		handleOrientation(e);
+    }
+	
+	canvas_x0 = 20;
+	canvas_y0 = 580;
+	canvas_rad = 530;
+	
+	
+	function drawRad(canvas, ang, rad){
+		var ctx = canvas.getContext("2d");
+		ctx.moveTo(canvas_x0, canvas_y0);
+		ctx.lineTo(canvas_x0+Math.cos(ang)*rad, canvas_y0-Math.sin(ang)*rad);
+		ctx.stroke();
+	}
+	
+	function writeNote(text, ang){
+		var rad = canvas_rad;
+		var ctx = canvaspointer.getContext("2d");
+		ctx.lineTo(canvas_x0+Math.cos(ang)*rad, canvas_y0-Math.sin(ang)*rad);
+		ctx.font = "20px Arial";
+		ctx.fillText(text, canvas_x0+Math.cos(ang)*rad, canvas_y0-Math.sin(ang)*rad);
+	}
+	
+	function drawAngles(){
+		for(i=0; i<=N_notes; i++){
+			var ang = i*Math.PI/(2*N_notes)
+			drawRad(canvasbg, ang, canvas_rad);
+			writeNote(strnotes[i%12], ang);
+		}
+	}
+	
+	
+	
+	function drawPointer(ang){
+		var ctx = canvaspointer.getContext("2d");		
+		ctx.clearRect(0, 0, canvaspointer.width, canvaspointer.height);
+		ctx.beginPath();
+		ctx.lineWidth = 2
+		ctx.strokeStyle = '#0000ff';
+		drawRad(canvaspointer, ang, canvas_rad);
+	}
+	
+	
+	slider = document.getElementsByTagName('input');
+	slider = slider[0];
+	
+	while_1();
+	
+	</script>
+
+</font>
+</body>
+</html>
