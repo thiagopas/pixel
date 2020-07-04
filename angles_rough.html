@@ -97,7 +97,7 @@ body{
                 + currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds();
-		txt.innerHTML = 'absolute: ' + absolute + '<br>alpha: ' + alpha + '<br>beta: ' + beta + '<br>gamma: ' + gamma + '<br>' + currentdate + '<br> note: ' + note;
+		txt.innerHTML = 'absolute: ' + Math.round(absolute) + '<br>alpha: ' + Math.round(alpha) + '<br>beta: ' + Math.round(beta) + '<br>gamma: ' + Math.round(gamma) + '<br>' + currentdate + '<br> note: ' + note;
 			
 			slider.value = note;
 }
