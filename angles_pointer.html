@@ -200,7 +200,7 @@ body{
 	
 	function writeNote(text, ang){
 		var rad = canvas_rad;
-		var ctx = canvaspointer.getContext("2d");
+		var ctx = canvasbg.getContext("2d");
 		ctx.lineTo(canvas_x0+Math.cos(ang)*rad, canvas_y0-Math.sin(ang)*rad);
 		ctx.font = "20px Arial";
 		ctx.fillText(text, canvas_x0+Math.cos(ang)*rad, canvas_y0-Math.sin(ang)*rad);
