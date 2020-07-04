@@ -1,6 +1,6 @@
 <html>
-<body onload='init()'> 
-Change log: bg<br>
+<body onload='init()'>
+Change log: power<br>
 <canvas id='canvasbg' width=600 height=600 style="border:1px solid #000000;"></canvas>
 <canvas id='canvaspointer' width=600 height=600 style="border:1px solid #000000;"></canvas>
 
@@ -82,7 +82,7 @@ body{
 			beta_t = 90;
 		expon = (N_notes-1)*beta_t/90;
 		index_note = Math.round(expon%12);
-		notechar.innerHTML = '<font size=7>' + index_note + ' - ' + strnotes[index_note];
+		notechar.innerHTML = '<font size=7>' + index_note + ' - ' + strnotes[index_note%12];
 		note = init_note * Math.pow(1.05946309436, expon);
 		oscillator.frequency.value = note;
 		drawPointer(Math.PI*beta_t/180);
@@ -207,8 +207,8 @@ body{
 	}
 	
 	function drawAngles(){
-		for(i=0; i<=N_notes; i++){
-			var ang = i*Math.PI/(2*N_notes)
+		for(i=0; i<N_notes; i++){
+			var ang = i*Math.PI/(2*(N_notes-1))
 			drawRad(canvasbg, ang, canvas_rad);
 			writeNote(strnotes[i%12], ang);
 		}
