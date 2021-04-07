@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>T&#243;picos</title>
+<style type="text/css">
+    li { list-style: none;  margin: 0; }
+    p { margin: 0; }
+    span.foldopened { color: white; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: visible;
+    cursor:pointer; }
+
+
+    span.foldclosed { color: #666666; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: hidden;
+    cursor:pointer; }
+
+    span.foldspecial { color: #666666; font-size: xx-small; border-style: none solid solid none;
+    border-color: #CCCCCC; border-width: 1; font-family: sans-serif; padding: 0em 0.1em 0em 0.1em; background: #e0e0e0;
+    cursor:pointer; }
+
+    span.l { color: red; font-weight: bold; }
+
+    a.mapnode:link {text-decoration: none; color: black; }
+    a.mapnode:visited {text-decoration: none; color: black; }
+    a.mapnode:active {text-decoration: none; color: black; }
+    a.mapnode:hover {text-decoration: none; color: black; background: #eeeee0; }
+
+</style>
+<!-- ^ Position is not set to relative / absolute here because of Mozilla -->
+</head>
+<body>
+
+<script type="text/javascript">
+   // Here we implement folding. It works fine with MSIE5.5, MSIE6.0 and
+   // Mozilla 0.9.6.
+
+   if (document.layers) {
+      //Netscape 4 specific code
+      pre = 'document.';
+      post = ''; }
+   if (document.getElementById) {
+      //Netscape 6 specific code
+      pre = 'document.getElementById("';
+      post = '").style'; }
+   if (document.all) {
+      //IE4+ specific code
+      pre = 'document.all.';
+      post = '.style'; }
+
+function layer_exists(layer) {
+   try {
+      eval(pre + layer + post);
+      return true; }
+   catch (error) {
+      return false; }}
+
+function show_layer(layer) {
+   eval(pre + layer + post).position = 'relative'; 
+   eval(pre + layer + post).visibility = 'visible'; }
+
+function hide_layer(layer) {
+   eval(pre + layer + post).visibility = 'hidden';
+   eval(pre + layer + post).position = 'absolute'; }
+
+function hide_folder(folder) {
+    hide_folding_layer(folder)
+    show_layer('show'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function show_folder(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_layer('show'+folder+'_'+i); }
+}
+function show_folder_completely(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+
+
+function hide_folding_layer(folder) {
+   var i;
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folding_layer(folder+'_'+i); }
+
+   hide_layer('hide'+folder);
+   hide_layer('show'+folder);
+   hide_layer('fold'+folder);
+
+   scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function fold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folder(folder+'_'+i); }
+}
+
+function unfold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+</script>
+<SPAN class="foldspecial" onclick="fold_document()">All +</SPAN>
+<SPAN class="foldspecial" onclick="unfold_document()">All -</SPAN>
+<p>T&#243;picos
+<ul><li><span id="show1_1" class="foldclosed" onClick="show_folder('1_1')" style="POSITION: absolute">+</span> <span id="hide1_1" class="foldopened" onClick="hide_folder('1_1')">-</span>
+Otimiza&#231;&#227;o
+<ul id="fold1_1" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      Convex Optimization (Boyd &amp; Vandenberghe)<br >(Livro em PDF)<br >&#xa;    </p>&#xa;  
+</a>
+</li>
+</ul>
+</li>
+<li><span id="show1_2" class="foldclosed" onClick="show_folder('1_2')" style="POSITION: absolute">+</span> <span id="hide1_2" class="foldopened" onClick="hide_folder('1_2')">-</span>
+Ac&#250;stica e Ultrassom
+<ul id="fold1_2" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_2_1" class="foldclosed" onClick="show_folder('1_2_1')" style="POSITION: absolute">+</span> <span id="hide1_2_1" class="foldopened" onClick="hide_folder('1_2_1')">-</span>
+Spatial impulse response
+<ul id="fold1_2_1" style="POSITION: relative; VISIBILITY: visible;"><li><a href="http://bme.elektro.dtu.dk/31545/notes/ref_jaj_2015.pdf" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      Notes for the International Summer School on Advanced Ultrasound Imaging<br >(J&#248;rgen Arendt Jensen)&#xa;    </p>&#xa;  
+</a>
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_3" class="foldclosed" onClick="show_folder('1_3')" style="POSITION: absolute">+</span> <span id="hide1_3" class="foldopened" onClick="hide_folder('1_3')">-</span>
+Sinais e Sistemas
+<ul id="fold1_3" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=KJnAy6hzetw&list=PL41692B571DD0AF9B&ab_channel=MITOpenCourseWare" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      Signals and Systems&#xa;    </p>&#xa;    <p>&#xa;      (Allan Oppenheim - Youtube)&#xa;    </p>&#xa;  
+</a>
+<p><span id="show1_3_1" class="foldclosed" onClick="show_folder('1_3_1')" style="POSITION: absolute">+</span> <span id="hide1_3_1" class="foldopened" onClick="hide_folder('1_3_1')">-</span>
+S&#233;ries de Fourier
+<ul id="fold1_3_1" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://lpsa.swarthmore.edu/Fourier/Series/ExFS.html" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      Fourier Series Examples&#xa;    </p>&#xa;    <p>&#xa;      (Swarthmore)&#xa;    </p>&#xa;  
+</a>
+</li>
+</ul><p><span id="show1_3_2" class="foldclosed" onClick="show_folder('1_3_2')" style="POSITION: absolute">+</span> <span id="hide1_3_2" class="foldopened" onClick="hide_folder('1_3_2')">-</span>
+Diagramas de Bode
+<ul id="fold1_3_2" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://lpsa.swarthmore.edu/Bode/BodeHow.html" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      The Asymptotic Bode Diagram: Derivation of Approximations<br >(Swarthmore)&#xa;    </p>&#xa;  
+</a>
+<a href="https://lpsa.swarthmore.edu/Bode/BodeExamples.html" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      Bode Plot Examples&#xa;    </p>&#xa;    <p>&#xa;      (Swarthmore)&#xa;    </p>&#xa;  
+</a>
+</li>
+</ul><p><span id="show1_3_3" class="foldclosed" onClick="show_folder('1_3_3')" style="POSITION: absolute">+</span> <span id="hide1_3_3" class="foldopened" onClick="hide_folder('1_3_3')">-</span>
+Transformada de Laplace
+<ul id="fold1_3_3" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_3_3_1" class="foldclosed" onClick="show_folder('1_3_3_1')" style="POSITION: absolute">+</span> <span id="hide1_3_3_1" class="foldopened" onClick="hide_folder('1_3_3_1')">-</span>
+Fra&#231;&#245;es parciais para Transf. de Laplace
+<ul id="fold1_3_3_1" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://lpsa.swarthmore.edu/BackGround/PartialFraction/PartialFraction.html" target="_blank"><span class=l>~</span>&nbsp;Partial Fraction Expansion
+</a>
+
+</li>
+
+</ul>
+</li>
+
+</ul></li>
+</ul>
+</li>
+<li><span id="show1_4" class="foldclosed" onClick="show_folder('1_4')" style="POSITION: absolute">+</span> <span id="hide1_4" class="foldopened" onClick="hide_folder('1_4')">-</span>
+Identifica&#231;&#227;o de Sistemas
+<ul id="fold1_4" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=TWdgSG0sMlQ&list=PLALrL4i0Pz6DrrCkkJ-k-_S3qi1bFzUUu&ab_channel=LuisAntonioAguirre" target="_blank"><span class=l>~</span>&nbsp;Modelagem e Identifica&#231;&#227;o
+<br>
+(Luis Fernando Aguirre - Youtube)
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_5" class="foldclosed" onClick="show_folder('1_5')" style="POSITION: absolute">+</span> <span id="hide1_5" class="foldopened" onClick="hide_folder('1_5')">-</span>
+Controladores L&#243;gicos Program&#225;veis
+<ul id="fold1_5" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_5_1" class="foldclosed" onClick="show_folder('1_5_1')" style="POSITION: absolute">+</span> <span id="hide1_5_1" class="foldopened" onClick="hide_folder('1_5_1')">-</span>
+CodeSys
+<ul id="fold1_5_1" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=78W8Kf8GLAk&ab_channel=GVensino" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      Tutorial CodeSys&#xa;    </p>&#xa;    <p>&#xa;      (Gabriel V. Silva Maganha - Youtube)&#xa;    </p>&#xa;  
+</a>
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_6" class="foldclosed" onClick="show_folder('1_6')" style="POSITION: absolute">+</span> <span id="hide1_6" class="foldopened" onClick="hide_folder('1_6')">-</span>
+C&#225;lculo
+<ul id="fold1_6" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_6_1" class="foldclosed" onClick="show_folder('1_6_1')" style="POSITION: absolute">+</span> <span id="hide1_6_1" class="foldopened" onClick="hide_folder('1_6_1')">-</span>
+C&#225;lculo multivari&#225;vel
+<ul id="fold1_6_1" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives#quadratic-approximations" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      Quadratic Representations<br >(Khan Academy - Youtube)<br >&#xa;    </p>&#xa;  
+</a>
+</li>
+</ul>
+</li>
+<li><span id="show1_6_2" class="foldclosed" onClick="show_folder('1_6_2')" style="POSITION: absolute">+</span> <span id="hide1_6_2" class="foldopened" onClick="hide_folder('1_6_2')">-</span>
+C&#225;lculo Variacional
+<ul id="fold1_6_2" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=6HeQc7CSkZs&ab_channel=FacultyofKhan" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      Calculus of Variations&#xa;    </p>&#xa;    <p>&#xa;      (Faculty of Khan - Youtube)&#xa;    </p>&#xa;  
+</a>
+<a href="https://drive.google.com/file/d/1jg3eNaQx_T9ZsljRUR4bFFWpQZe6o0mu/view" target="_blank"><span class=l>~</span>&nbsp;&#xa;    <p>&#xa;      A practical introduction to Calculus of Variations&#xa;    </p>&#xa;    <p>&#xa;      (Thiago Passarin - v&#237;deo)&#xa;    </p>&#xa;  
+</a>
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_7" class="foldclosed" onClick="show_folder('1_7')" style="POSITION: absolute">+</span> <span id="hide1_7" class="foldopened" onClick="hide_folder('1_7')">-</span>
+Matlab
+<ul id="fold1_7" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      GNU Octave&#xa;    </p>&#xa;    <p>&#xa;      (Sistema em c&#xf3;digo aberto compat&#xed;vel com Matlab)&#xa;    </p>&#xa;  
+<ul><li><a href="https://octave-online.net/" target="_blank"><span class=l>~</span>&nbsp;Octave online
+</a>
+
+</li>
+<li><a href="https://en.wikipedia.org/wiki/GNU_Octave" target="_blank"><span class=l>~</span>&nbsp;GNU Octave (Wikipedia)
+</a>
+
+</li>
+
+</ul></li>
+</ul>
+</li>
+
+</ul><SCRIPT type="text/javascript">
+fold_document();
+</SCRIPT>
+</body>
+</html>
