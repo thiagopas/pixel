@@ -1,0 +1,62 @@
+<html>
+  <body>
+	<video id="player" controls="" autoplay="" width="320" height="240" onloadeddata='video_loaded=true;'></video>
+	<img src="servletrecuperafoto.gif" width=100 id="passarin" crossorigin='anonymous'>
+    <br><Br>
+	<button onclick='asyncCall()'>Start</button><br>
+	<input type="text" id="location">
+	
+	<!-- Load TensorFlow.js -->
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <!-- Load Posenet -->
+    <script src="https://unpkg.com/@tensorflow-models/posenet">
+    </script>
+    <script type="text/javascript">
+		const imageScaleFactor = 0.50;
+const flipHorizontal = false;
+const outputStride = 16;
+const imageElement = document.getElementById('player');
+const location_x = document.getElementById('location');
+video_loaded = false;
+
+started = false;
+audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+oscillator = audioCtx.createOscillator();
+started = true;
+oscillator.type = 'square';
+oscillator.frequency.value = 440; // value in hertz
+oscillator.connect(audioCtx.destination);
+oscillator.start();
+
+      posenet.load().then(function(net) {
+        // posenet model loaded
+      });
+	  
+	  var handleSuccess = function(stream) {
+    // Attach the video stream to the video element and autoplay.
+    player.srcObject = stream;
+  };
+	  navigator.mediaDevices.getUserMedia({video: true})
+      .then(handleSuccess);
+
+thePose = null;
+
+async function asyncCall() {
+  console.log('calling');
+  console.log('video loaded');
+  const net = await posenet.load();
+  while(1){
+  // load the posenet model
+	const pose = await net.estimateSinglePose(imageElement, imageScaleFactor, flipHorizontal, outputStride);
+	thePose = pose;
+	location_x.value = pose.keypoints[9].position.x;
+	oscillator.frequency.value = location_x.value*10;
+  }
+  // expected output: "resolved"
+}
+
+
+    </script>
+	
+  </body>
+</html>
