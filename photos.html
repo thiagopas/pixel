@@ -1,4 +1,4 @@
-
+<! Example from https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos>
 <!DOCTYPE html>
 <html>
     <head>
@@ -90,34 +90,38 @@
         </style>
         
         <title>Taking still photos with WebRTC - demo - code sample</title>
-    </head>
+    <script src="./opencv.js" type="text/javascript"></script>
+	</head>
     <body>
+	<div id='result'></div>
         
             <div class="contentarea">
-  <h1>
-    MDN - WebRTC: Still photo capture demo
-  </h1>
-  <p>
-   This example demonstrates how to set up a media stream using your built-in webcam, fetch an image from that stream, and create a PNG using that image.
-  </p>
+  
   <div class="camera">
     <video id="video">Video stream not available.</video>
-    <button id="startbutton">Take photo</button>
+    <!-- <button id="startbutton">Take photo</button> -->
   </div>
   <canvas id="canvas">
   </canvas>
   <div class="output">
     <img id="photo" alt="The screen capture will appear in this box.">
   </div>
+  <div class="output">
+    <img id="photo2" alt="The screen capture will appear in this box.">
+  </div>
+  <div class="output">
+    <canvas id="f_photo" width="512" height="512"></canvas>
+  </div>
   <p>
-    Visit our article <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos"> Taking still photos with WebRTC</a> to learn more about the technologies used here.
+  <!-- <button id="dftbutton">Apply DFT</button><br> -->
   </p>
 </div>
+
 
         
         
             <script>
-                (function() {
+	togglephoto = true;
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
   // calculated based on the aspect ratio of the input stream.
@@ -136,7 +140,14 @@
   var video = null;
   var canvas = null;
   var photo = null;
+  var photo2 = null;
+  var f_photo = null;
   var startbutton = null;
+  var result = null;
+  var counter = 0;
+  var toggle = false;
+  var cumx = 0;
+  var cumy = 0;
 
   function showViewLiveResultButton() {
     if (window.self !== window.top) {
@@ -158,7 +169,11 @@
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
     photo = document.getElementById('photo');
-    startbutton = document.getElementById('startbutton');
+    photo2 = document.getElementById('photo2');
+	f_photo = document.getElementById('f_photo');
+    //startbutton = document.getElementById('startbutton');
+	//dftbutton = document.getElementById('dftbutton');
+	result = document.getElementById('result');
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
     .then(function(stream) {
@@ -188,10 +203,16 @@
       }
     }, false);
 
-    startbutton.addEventListener('click', function(ev){
-      takepicture();
+    /*startbutton.addEventListener('click', function(ev){
+      takepicture();	  
+      ev.preventDefault();	  
+    }, false); */
+	
+	/*dftbutton.addEventListener('click', function(ev){
+      //applydft();
+	  trig_interv_pc();
       ev.preventDefault();
-    }, false);
+    }, false);*/
 
     clearphoto();
   }
@@ -206,7 +227,119 @@
 
     var data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
+    photo2.setAttribute('src', data);
+	f_photo.setAttribute('src', data);
   }
+  
+  function conjugate(complexI, complexI_){
+	let planes = new cv.MatVector();
+	let plane0 = new cv.Mat()
+	let plane1 = new cv.Mat()
+	cv.split(complexI, planes);
+	let ones = new cv.Mat.ones(complexI.rows, complexI.cols, cv.CV_32F);
+	plane0 = planes.get(0)
+	plane0.convertTo(plane0, cv.CV_32F);
+	plane1 = planes.get(1)
+	plane1.convertTo(plane1, cv.CV_32F);
+	plane1 = plane1.mul(ones, -1)
+	let planes_ = new cv.MatVector();
+	planes_.push_back(plane0);
+	planes_.push_back(plane1);
+	//let complexI_ = new cv.Mat()
+	cv.merge(planes_, complexI_);
+	planes.delete(); plane0.delete(); plane1.delete(); planes_.delete();
+  }
+  
+  function dft(src, complexI){
+	cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+	// get optimal size of DFT
+	let optimalRows = cv.getOptimalDFTSize(src.rows);
+	let optimalCols = cv.getOptimalDFTSize(src.cols);
+	let s0 = cv.Scalar.all(0);
+	let padded = new cv.Mat();
+	cv.copyMakeBorder(src, padded, 0, optimalRows - src.rows, 0,
+					optimalCols - src.cols, cv.BORDER_CONSTANT, s0);
+	
+	// use cv.MatVector to distribute space for real part and imaginary part
+	let plane0 = new cv.Mat();
+	padded.convertTo(plane0, cv.CV_32F);
+	let planes = new cv.MatVector();
+	//let complexI = new cv.Mat();
+	let plane1 = new cv.Mat.zeros(padded.rows, padded.cols, cv.CV_32F);
+	planes.push_back(plane0);
+	planes.push_back(plane1);
+	cv.merge(planes, complexI);
+	// in-place dft transform
+	cv.dft(complexI, complexI);
+	padded.delete(); 
+	plane0.delete(); planes.delete(); plane1.delete();
+  }
+  
+  function applydft(){
+let src = cv.imread('photo');
+let src2 = cv.imread('photo2')
+
+// DFT transform
+let complexI = new cv.Mat();
+dft(src, complexI)
+let complexI2 = new cv.Mat();
+dft(src2, complexI2)
+
+// Complex conjugate
+let complexI_ = new cv.Mat()
+conjugate(complexI, complexI_)
+
+// Multiply
+let multiplied = new cv.Mat()
+multiplied = complexI_.mul(complexI2, 1);
+
+// Get magnitude of multiplied
+let planes = new cv.MatVector();
+let magnitude = new cv.Mat()
+cv.split(multiplied, planes);
+cv.magnitude(planes.get(0), planes.get(1), magnitude);
+
+// Divide multiplied by magnitude
+cv.divide(planes.get(0), magnitude, planes.get(0))
+cv.divide(planes.get(1), magnitude, planes.get(1))
+let normalized = new cv.Mat()
+cv.merge(planes, normalized);
+
+// Inverse DFT transform
+cv.dft(normalized, complexI, cv.DFT_INVERSE);
+
+// compute log(1 + sqrt(Re(DFT(img))**2 + Im(DFT(img))**2))
+cv.split(complexI, planes);
+cv.magnitude(planes.get(0), planes.get(1), planes.get(0));
+let mag = planes.get(0);
+
+// The pixel value of cv.CV_32S type image ranges from 0 to 1.
+let mag_norm = new cv.Mat()
+cv.normalize(mag, mag_norm, 0, 1, cv.NORM_MINMAX);
+
+if (cv.minMaxLoc(mag_norm).maxLoc.x < 160){
+	max_x = cv.minMaxLoc(mag_norm).maxLoc.x;
+}
+else{
+	max_x = cv.minMaxLoc(mag_norm).maxLoc.x - 320;
+}
+
+if (cv.minMaxLoc(mag_norm).maxLoc.y < 120){
+	max_y = cv.minMaxLoc(mag_norm).maxLoc.y;
+}
+else{
+	max_y = cv.minMaxLoc(mag_norm).maxLoc.y - 240;
+}
+cumx += max_x;
+cumy += max_y;
+result.innerHTML = 'Current: ' + max_x + ', ' + max_y + '<br>Accumulated: ' + cumx + ', ' + cumy;
+
+cv.imshow('f_photo', mag_norm);
+src.delete();  planes.delete(); complexI.delete(); src2.delete();
+complexI2.delete(); complexI_.delete();  magnitude.delete();
+normalized.delete(); mag.delete(); mag_norm.delete();
+}
 
   // Capture a photo by fetching the current contents of the video
   // and drawing it into a canvas, then converting that to a PNG
@@ -222,7 +355,12 @@
       context.drawImage(video, 0, 0, width, height);
 
       var data = canvas.toDataURL('image/png');
-      photo.setAttribute('src', data);
+      var data_ = photo.src;
+	  
+
+	  photo.setAttribute('src', data);
+	  photo2.setAttribute('src', data_);  
+	  
     } else {
       clearphoto();
     }
@@ -231,7 +369,35 @@
   // Set up our event listener to run the startup process
   // once loading is complete.
   window.addEventListener('load', startup, false);
-})();
+  
+  function run_all(){
+	
+	counter++;
+	if (counter > 3){
+		if (toggle){
+			toggle = false;
+			takepicture();
+		}
+		else{
+			toggle = true;
+			applydft();
+		}		
+	}
+	else{
+		takepicture();
+	}
+  }
+  
+  function trigger_interval(){
+  setInterval(run_all, 100);
+  }
+  
+  function trig_interv_pc(){
+	setInterval(applydft, 1000);
+  }
+  
+  setTimeout(trigger_interval, 2000);
+
 
 
             </script>
