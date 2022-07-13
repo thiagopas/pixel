@@ -1,6 +1,6 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1606963364896" ID="ID_1941080162" MODIFIED="1657681177916" STYLE="bubble" TEXT="T&#xf3;picos">
+<node CREATED="1606963364896" ID="ID_1941080162" MODIFIED="1657683137181" STYLE="bubble" TEXT="Topics">
 <node CREATED="1607518523431" FOLDED="true" ID="ID_932147248" MODIFIED="1657681358016" POSITION="right" TEXT="Acoustics and Ultrasonics">
 <node CREATED="1607518803639" FOLDED="true" ID="ID_1410858501" MODIFIED="1649074764586" TEXT="Spatial impulse response">
 <node CREATED="1607518856783" ID="ID_799823470" LINK="http://bme.elektro.dtu.dk/31545/notes/ref_jaj_2015.pdf" MODIFIED="1607518939691">
