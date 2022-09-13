@@ -98,9 +98,9 @@
 </node>
 </node>
 </node>
-<node CREATED="1662398023543" FOLDED="true" ID="ID_1916756950" MODIFIED="1663076292782" POSITION="right" TEXT="Computer vision">
-<node CREATED="1662398036913" FOLDED="true" ID="ID_1979618838" MODIFIED="1663075675705" TEXT="Rotation and translation estimation (rigid body)">
-<node CREATED="1662398482193" ID="ID_824737818" LINK="https://rotations.berkeley.edu/estimating-rotations-and-translations-from-optical-targets/" MODIFIED="1662399914058">
+<node CREATED="1662398023543" ID="ID_1916756950" MODIFIED="1663076429929" POSITION="right" TEXT="Computer vision">
+<node CREATED="1662398036913" ID="ID_1979618838" MODIFIED="1663076432083" TEXT="Rotation and translation estimation (rigid body)">
+<node CREATED="1662398482193" ID="ID_824737818" LINK="https://rotations.berkeley.edu/estimating-rotations-and-translations-from-optical-targets/" MODIFIED="1663076448538">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -110,10 +110,11 @@
       Estimating rotations and translations from optical targets
     </p>
     <p>
-      (University of Kaliforcia, Berkeley)
+      (University of California, Berkeley)
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 <node CREATED="1662399772151" FOLDED="true" ID="ID_1286839168" MODIFIED="1663075674884" TEXT="Global displacement estimation">
