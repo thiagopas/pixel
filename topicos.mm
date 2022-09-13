@@ -1,7 +1,7 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1606963364896" ID="ID_1941080162" MODIFIED="1657683137181" STYLE="bubble" TEXT="Topics">
-<node CREATED="1607518523431" FOLDED="true" ID="ID_932147248" MODIFIED="1662399699935" POSITION="right" TEXT="Acoustics and Ultrasonics">
+<node CREATED="1607518523431" FOLDED="true" ID="ID_932147248" MODIFIED="1663075703504" POSITION="right" TEXT="Acoustics and Ultrasonics">
 <node CREATED="1607518803639" FOLDED="true" ID="ID_1410858501" MODIFIED="1649074764586" TEXT="Spatial impulse response">
 <node CREATED="1607518856783" ID="ID_799823470" LINK="http://bme.elektro.dtu.dk/31545/notes/ref_jaj_2015.pdf" MODIFIED="1607518939691">
 <richcontent TYPE="NODE"><html>
@@ -98,8 +98,8 @@
 </node>
 </node>
 </node>
-<node CREATED="1662398023543" FOLDED="true" ID="ID_1916756950" MODIFIED="1662399920579" POSITION="right" TEXT="Computer vision">
-<node CREATED="1662398036913" FOLDED="true" ID="ID_1979618838" MODIFIED="1662399919061" TEXT="Rotation and translation estimation">
+<node CREATED="1662398023543" FOLDED="true" ID="ID_1916756950" MODIFIED="1663076292782" POSITION="right" TEXT="Computer vision">
+<node CREATED="1662398036913" FOLDED="true" ID="ID_1979618838" MODIFIED="1663075675705" TEXT="Rotation and translation estimation (rigid body)">
 <node CREATED="1662398482193" ID="ID_824737818" LINK="https://rotations.berkeley.edu/estimating-rotations-and-translations-from-optical-targets/" MODIFIED="1662399914058">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -113,11 +113,11 @@
       (University of Kaliforcia, Berkeley)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
-<node CREATED="1662399772151" FOLDED="true" ID="ID_1286839168" MODIFIED="1662399812723" TEXT="Global displacement estimation">
+<node CREATED="1662399772151" FOLDED="true" ID="ID_1286839168" MODIFIED="1663075674884" TEXT="Global displacement estimation">
+<node CREATED="1663075461479" FOLDED="true" ID="ID_912002687" MODIFIED="1663075671923" TEXT="Phase Correlation Algorithm">
 <node CREATED="1662399781888" ID="ID_1242391755" LINK="https://en.wikipedia.org/wiki/Phase_correlation" MODIFIED="1662399805307">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -131,12 +131,13 @@
       (Wikipedia)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
+</node>
+<node CREATED="1663075565556" ID="ID_1019466991" LINK="https://doi.org/10.1109/JSTARS.2019.2937690" MODIFIED="1663075610789" TEXT="Tong, Xiaohua, et al. &quot;Image registration with Fourier-based image correlation: A comprehensive review of developments and applications.&quot; IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing 12.10 (2019): 4062-4081."/>
 </node>
 </node>
 </node>
-<node CREATED="1657680897102" FOLDED="true" ID="ID_69320932" MODIFIED="1662399464362" POSITION="right" TEXT="Control Theory">
+<node CREATED="1657680897102" FOLDED="true" ID="ID_69320932" MODIFIED="1663075678168" POSITION="right" TEXT="Control Theory">
 <node CREATED="1607518407584" FOLDED="true" ID="ID_410213140" MODIFIED="1662399461548" STYLE="bubble" TEXT="Laplace Transform">
 <node CREATED="1606964189651" FOLDED="true" ID="ID_85164201" MODIFIED="1662399460563">
 <richcontent TYPE="NODE"><html>
@@ -203,8 +204,7 @@
       Hespanha, Joo P., Payam Naghshtabrizi, and Yonggang Xu. &quot;A survey of recent results in networked control systems.&quot; Proceedings of the IEEE 95.1 (2007): 138-162.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -334,11 +334,11 @@
 <node CREATED="1613997311414" ID="ID_239783632" LINK="https://en.wikipedia.org/wiki/GNU_Octave" MODIFIED="1613997375187" TEXT="GNU Octave (Wikipedia)"/>
 </node>
 </node>
-<node CREATED="1606963590938" FOLDED="true" ID="ID_1728845974" MODIFIED="1662399292624" POSITION="right" TEXT="Optimization">
-<node CREATED="1648756912593" FOLDED="true" ID="ID_1761385891" MODIFIED="1662399236347" TEXT="Adjoint state methods">
+<node CREATED="1606963590938" FOLDED="true" ID="ID_1728845974" MODIFIED="1663075736731" POSITION="right" TEXT="Optimization">
+<node CREATED="1648756912593" FOLDED="true" ID="ID_1761385891" MODIFIED="1663075715517" TEXT="Adjoint state methods">
 <node CREATED="1648756919745" ID="ID_1813753556" LINK="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/926428B3ACFAEA277DED39A1896A8109/S0022143000205911a.pdf/a-tutorial-on-adjoint-methods-and-their-use-for-data-assimilation-in-glaciology.pdf" MODIFIED="1662399131752" TEXT="Granzow, Glen D. &quot;A tutorial on adjoint methods and their use for data assimilation in glaciology.&quot; Journal of Glaciology 60.221 (2014): 440-446."/>
 </node>
-<node CREATED="1648756926121" FOLDED="true" ID="ID_609667712" MODIFIED="1662399238821" TEXT="Convex optimization">
+<node CREATED="1648756926121" FOLDED="true" ID="ID_609667712" MODIFIED="1663075717266" TEXT="Convex optimization">
 <node CREATED="1606964041319" ID="ID_1026839471" LINK="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf" MODIFIED="1606964230909">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -352,8 +352,8 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1648756974041" FOLDED="true" ID="ID_95634564" MODIFIED="1662399291437" TEXT="Greedy algorithms">
-<node CREATED="1648757114124" FOLDED="true" ID="ID_289126857" MODIFIED="1662399290391" TEXT="Orthogonal Matching Pursuit (OMP)">
+<node CREATED="1648756974041" FOLDED="true" ID="ID_95634564" MODIFIED="1663075726321" TEXT="Greedy algorithms">
+<node CREATED="1648757114124" FOLDED="true" ID="ID_289126857" MODIFIED="1663075724716" TEXT="Orthogonal Matching Pursuit (OMP)">
 <node CREATED="1648757127666" ID="ID_1099533201" LINK="https://doi.org/10.1109/TIT.2007.909108" MODIFIED="1662399281116" TEXT="Tropp, Joel A., and Anna C. Gilbert. &quot;Signal recovery from random measurements via orthogonal matching pursuit.&quot; IEEE Transactions on information theory 53.12 (2007): 4655-4666."/>
 </node>
 </node>
@@ -392,7 +392,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1657680000814" FOLDED="true" ID="ID_1759381397" MODIFIED="1662399230990" POSITION="right" TEXT="Python">
+<node CREATED="1657680000814" FOLDED="true" ID="ID_1759381397" MODIFIED="1663075746775" POSITION="right" TEXT="Python">
 <node CREATED="1657680075759" FOLDED="true" ID="ID_1329184105" MODIFIED="1662399175189" TEXT="Multithreading">
 <node CREATED="1657680092027" ID="ID_1659775600" LINK="https://realpython.com/intro-to-python-threading/" MODIFIED="1657680138359">
 <richcontent TYPE="NODE"><html>
