@@ -1,7 +1,7 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1606963364896" ID="ID_1941080162" MODIFIED="1657683137181" STYLE="bubble" TEXT="Topics">
-<node CREATED="1607518523431" FOLDED="true" ID="ID_932147248" MODIFIED="1663075703504" POSITION="right" TEXT="Acoustics and Ultrasonics">
+<node CREATED="1607518523431" FOLDED="true" ID="ID_932147248" MODIFIED="1663078568040" POSITION="right" TEXT="Acoustics and Ultrasonics">
 <node CREATED="1607518803639" FOLDED="true" ID="ID_1410858501" MODIFIED="1649074764586" TEXT="Spatial impulse response">
 <node CREATED="1607518856783" ID="ID_799823470" LINK="http://bme.elektro.dtu.dk/31545/notes/ref_jaj_2015.pdf" MODIFIED="1607518939691">
 <richcontent TYPE="NODE"><html>
@@ -98,7 +98,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1662398023543" ID="ID_1916756950" MODIFIED="1663076429929" POSITION="right" TEXT="Computer vision">
+<node CREATED="1662398023543" FOLDED="true" ID="ID_1916756950" MODIFIED="1663078550936" POSITION="right" TEXT="Computer vision">
 <node CREATED="1662398036913" ID="ID_1979618838" MODIFIED="1663076432083" TEXT="Rotation and translation estimation (rigid body)">
 <node CREATED="1662398482193" ID="ID_824737818" LINK="https://rotations.berkeley.edu/estimating-rotations-and-translations-from-optical-targets/" MODIFIED="1663076448538">
 <richcontent TYPE="NODE"><html>
@@ -290,28 +290,28 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1648756268545" FOLDED="true" ID="ID_769954926" MODIFIED="1662399159760" POSITION="right" TEXT="Image reconstruction">
-<node CREATED="1648756284824" FOLDED="true" ID="ID_635881276" MODIFIED="1648756825556" TEXT="Regularization">
-<node CREATED="1648756542594" ID="ID_155755289" LINK="http://repositorio.utfpr.edu.br/jspui/bitstream/1/851/1/CT_CPGEI_M_Passarin%2c%20Thiago%20Alberto%20Rigo_2013.pdf" MODIFIED="1648756597401" TEXT="Disserta&#xe7;&#xe3;o de mestrado">
+<node CREATED="1648756268545" FOLDED="true" ID="ID_769954926" MODIFIED="1663080080922" POSITION="right" TEXT="Image reconstruction">
+<node CREATED="1648756284824" FOLDED="true" ID="ID_635881276" MODIFIED="1663080080914" TEXT="Regularization">
+<node CREATED="1648756542594" FOLDED="true" ID="ID_155755289" LINK="http://repositorio.utfpr.edu.br/jspui/bitstream/1/851/1/CT_CPGEI_M_Passarin%2c%20Thiago%20Alberto%20Rigo_2013.pdf" MODIFIED="1663080080914" TEXT="Disserta&#xe7;&#xe3;o de mestrado">
 <node CREATED="1648756632121" ID="ID_1314349294" MODIFIED="1648756669797" TEXT="3.2 Regulariza&#xe7;&#xe3;o em problemas inversos"/>
 </node>
 <node CREATED="1648756710910" ID="ID_1434154825" MODIFIED="1648756712733" TEXT="Karl, W. Clem. &quot;Regularization in image restoration and reconstruction.&quot; Handbook of Image and Video Processing. Academic Press, 2005. 183-V."/>
 </node>
-<node CREATED="1648756496714" FOLDED="true" ID="ID_290064650" MODIFIED="1648756827105" TEXT="Linear model-based reconstruction in ultrasound">
-<node CREATED="1648756542594" ID="ID_280590209" LINK="http://repositorio.utfpr.edu.br/jspui/bitstream/1/851/1/CT_CPGEI_M_Passarin%2c%20Thiago%20Alberto%20Rigo_2013.pdf" MODIFIED="1648756656010" TEXT="Disserta&#xe7;&#xe3;o de mestrado">
+<node CREATED="1648756496714" FOLDED="true" ID="ID_290064650" MODIFIED="1663080080918" TEXT="Linear model-based reconstruction in ultrasound">
+<node CREATED="1648756542594" FOLDED="true" ID="ID_280590209" LINK="http://repositorio.utfpr.edu.br/jspui/bitstream/1/851/1/CT_CPGEI_M_Passarin%2c%20Thiago%20Alberto%20Rigo_2013.pdf" MODIFIED="1663080080915" TEXT="Disserta&#xe7;&#xe3;o de mestrado">
 <node CREATED="1648756570986" ID="ID_1406024620" MODIFIED="1648756571997" TEXT="2.6 Reconstru&#xe7;&#xe3;o por problemas inversos em ultrassom"/>
 <node CREATED="1648756577120" ID="ID_1133387909" MODIFIED="1648756578173" TEXT="3 Reconstru&#xe7;&#xe3;o de imagens por problemas inversos"/>
 </node>
-<node CREATED="1648756801177" ID="ID_930724742" MODIFIED="1648756802549" TEXT="Viola, Francesco, Michael A. Ellis, and William F. Walker. &quot;Time-domain optimized near-field estimator for ultrasound imaging: Initial development and results.&quot; IEEE Transactions on Medical Imaging 27.1 (2007): 99-110.">
+<node CREATED="1648756801177" FOLDED="true" ID="ID_930724742" MODIFIED="1663080080916" TEXT="Viola, Francesco, Michael A. Ellis, and William F. Walker. &quot;Time-domain optimized near-field estimator for ultrasound imaging: Initial development and results.&quot; IEEE Transactions on Medical Imaging 27.1 (2007): 99-110.">
 <node CREATED="1648756807138" ID="ID_405391722" MODIFIED="1648756811917" TEXT="See Fig. 2"/>
 </node>
 </node>
-<node CREATED="1662398599521" ID="ID_456515333" MODIFIED="1662398655978" TEXT="Full Waveform Inversion">
+<node CREATED="1662398599521" FOLDED="true" ID="ID_456515333" MODIFIED="1663080080921" TEXT="Full Waveform Inversion">
 <node CREATED="1662398624153" ID="ID_1893546160" MODIFIED="1662398648287" TEXT="See Optimization &gt; Adjoint State Methods">
 <arrowlink DESTINATION="ID_1893546160" ENDARROW="Default" ENDINCLINATION="0;0;" ID="Arrow_ID_165812937" STARTARROW="None" STARTINCLINATION="0;0;"/>
 <linktarget COLOR="#b0b0b0" DESTINATION="ID_1893546160" ENDARROW="Default" ENDINCLINATION="0;0;" ID="Arrow_ID_165812937" SOURCE="ID_1893546160" STARTARROW="None" STARTINCLINATION="0;0;"/>
 </node>
-<node CREATED="1662398920311" FOLDED="true" ID="ID_1295975730" LINK="https://doi.org/10.1190/1.1442188" MODIFIED="1662399149893" TEXT="Gauthier, Odile, Jean Virieux, and Albert Tarantola. &quot;Two-dimensional nonlinear inversion of seismic waveforms: Numerical results.&quot; Geophysics 51.7 (1986): 1387-1403.">
+<node CREATED="1662398920311" FOLDED="true" ID="ID_1295975730" LINK="https://doi.org/10.1190/1.1442188" MODIFIED="1663080080919" TEXT="Gauthier, Odile, Jean Virieux, and Albert Tarantola. &quot;Two-dimensional nonlinear inversion of seismic waveforms: Numerical results.&quot; Geophysics 51.7 (1986): 1387-1403.">
 <node CREATED="1662398963992" ID="ID_988280886" MODIFIED="1662399148022" STYLE="bubble" TEXT="This is a very didactic, tutorial-like paper that may serve to those giving a first look at FWI"/>
 </node>
 </node>
@@ -335,8 +335,8 @@
 <node CREATED="1613997311414" ID="ID_239783632" LINK="https://en.wikipedia.org/wiki/GNU_Octave" MODIFIED="1613997375187" TEXT="GNU Octave (Wikipedia)"/>
 </node>
 </node>
-<node CREATED="1606963590938" FOLDED="true" ID="ID_1728845974" MODIFIED="1663075736731" POSITION="right" TEXT="Optimization">
-<node CREATED="1648756912593" FOLDED="true" ID="ID_1761385891" MODIFIED="1663075715517" TEXT="Adjoint state methods">
+<node CREATED="1606963590938" FOLDED="true" ID="ID_1728845974" MODIFIED="1663078589592" POSITION="right" TEXT="Optimization">
+<node CREATED="1648756912593" FOLDED="true" ID="ID_1761385891" MODIFIED="1663078588211" TEXT="Adjoint state methods">
 <node CREATED="1648756919745" ID="ID_1813753556" LINK="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/926428B3ACFAEA277DED39A1896A8109/S0022143000205911a.pdf/a-tutorial-on-adjoint-methods-and-their-use-for-data-assimilation-in-glaciology.pdf" MODIFIED="1662399131752" TEXT="Granzow, Glen D. &quot;A tutorial on adjoint methods and their use for data assimilation in glaciology.&quot; Journal of Glaciology 60.221 (2014): 440-446."/>
 </node>
 <node CREATED="1648756926121" FOLDED="true" ID="ID_609667712" MODIFIED="1663075717266" TEXT="Convex optimization">
