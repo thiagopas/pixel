@@ -98,8 +98,8 @@
 </node>
 </node>
 </node>
-<node CREATED="1662398023543" FOLDED="true" ID="ID_1916756950" MODIFIED="1663078550936" POSITION="right" TEXT="Computer vision">
-<node CREATED="1662398036913" ID="ID_1979618838" MODIFIED="1663076432083" TEXT="Rotation and translation estimation (rigid body)">
+<node CREATED="1662398023543" FOLDED="true" ID="ID_1916756950" MODIFIED="1664943249069" POSITION="right" TEXT="Computer vision">
+<node CREATED="1662398036913" FOLDED="true" ID="ID_1979618838" MODIFIED="1664943198064" TEXT="Rotation and translation estimation (rigid body)">
 <node CREATED="1662398482193" ID="ID_824737818" LINK="https://rotations.berkeley.edu/estimating-rotations-and-translations-from-optical-targets/" MODIFIED="1663076448538">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -113,12 +113,11 @@
       (University of California, Berkeley)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
-<node CREATED="1662399772151" FOLDED="true" ID="ID_1286839168" MODIFIED="1663075674884" TEXT="Global displacement estimation">
-<node CREATED="1663075461479" FOLDED="true" ID="ID_912002687" MODIFIED="1663075671923" TEXT="Phase Correlation Algorithm">
+<node CREATED="1662399772151" FOLDED="true" ID="ID_1286839168" MODIFIED="1664943246926" TEXT="Global displacement estimation">
+<node CREATED="1663075461479" FOLDED="true" ID="ID_912002687" MODIFIED="1664943244550" TEXT="Phase Correlation Algorithm">
 <node CREATED="1662399781888" ID="ID_1242391755" LINK="https://en.wikipedia.org/wiki/Phase_correlation" MODIFIED="1662399805307">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -138,7 +137,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1657680897102" FOLDED="true" ID="ID_69320932" MODIFIED="1663075678168" POSITION="right" TEXT="Control Theory">
+<node CREATED="1657680897102" FOLDED="true" ID="ID_69320932" MODIFIED="1664941666075" POSITION="right" TEXT="Control Theory">
 <node CREATED="1607518407584" FOLDED="true" ID="ID_410213140" MODIFIED="1662399461548" STYLE="bubble" TEXT="Laplace Transform">
 <node CREATED="1606964189651" FOLDED="true" ID="ID_85164201" MODIFIED="1662399460563">
 <richcontent TYPE="NODE"><html>
@@ -191,7 +190,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1606963560544" FOLDED="true" HGAP="22" ID="ID_81845382" MODIFIED="1662399449920" TEXT="System Identification" VSHIFT="-1">
+<node CREATED="1606963560544" FOLDED="true" HGAP="22" ID="ID_81845382" MODIFIED="1664941658515" TEXT="System Identification" VSHIFT="-1">
 <node CREATED="1606963608382" ID="ID_1724472532" LINK="https://www.youtube.com/watch?v=TWdgSG0sMlQ&amp;list=PLALrL4i0Pz6DrrCkkJ-k-_S3qi1bFzUUu&amp;ab_channel=LuisAntonioAguirre" MODIFIED="1606964315043" TEXT="Modelagem e Identifica&#xe7;&#xe3;o&#xa;(Luis Fernando Aguirre - Youtube)"/>
 </node>
 <node CREATED="1662399351544" FOLDED="true" ID="ID_1836055849" MODIFIED="1662399440227" TEXT="Networked Control Systems">
@@ -335,8 +334,8 @@
 <node CREATED="1613997311414" ID="ID_239783632" LINK="https://en.wikipedia.org/wiki/GNU_Octave" MODIFIED="1613997375187" TEXT="GNU Octave (Wikipedia)"/>
 </node>
 </node>
-<node CREATED="1606963590938" FOLDED="true" ID="ID_1728845974" MODIFIED="1663078589592" POSITION="right" TEXT="Optimization">
-<node CREATED="1648756912593" FOLDED="true" ID="ID_1761385891" MODIFIED="1663078588211" TEXT="Adjoint state methods">
+<node CREATED="1606963590938" FOLDED="true" ID="ID_1728845974" MODIFIED="1664943251974" POSITION="right" TEXT="Optimization">
+<node CREATED="1648756912593" FOLDED="true" ID="ID_1761385891" MODIFIED="1664943191327" TEXT="Adjoint state methods">
 <node CREATED="1648756919745" ID="ID_1813753556" LINK="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/926428B3ACFAEA277DED39A1896A8109/S0022143000205911a.pdf/a-tutorial-on-adjoint-methods-and-their-use-for-data-assimilation-in-glaciology.pdf" MODIFIED="1662399131752" TEXT="Granzow, Glen D. &quot;A tutorial on adjoint methods and their use for data assimilation in glaciology.&quot; Journal of Glaciology 60.221 (2014): 440-446."/>
 </node>
 <node CREATED="1648756926121" FOLDED="true" ID="ID_609667712" MODIFIED="1663075717266" TEXT="Convex optimization">
@@ -356,6 +355,118 @@
 <node CREATED="1648756974041" FOLDED="true" ID="ID_95634564" MODIFIED="1663075726321" TEXT="Greedy algorithms">
 <node CREATED="1648757114124" FOLDED="true" ID="ID_289126857" MODIFIED="1663075724716" TEXT="Orthogonal Matching Pursuit (OMP)">
 <node CREATED="1648757127666" ID="ID_1099533201" LINK="https://doi.org/10.1109/TIT.2007.909108" MODIFIED="1662399281116" TEXT="Tropp, Joel A., and Anna C. Gilbert. &quot;Signal recovery from random measurements via orthogonal matching pursuit.&quot; IEEE Transactions on information theory 53.12 (2007): 4655-4666."/>
+</node>
+</node>
+<node CREATED="1664942421094" FOLDED="true" ID="ID_1736581226" MODIFIED="1664942610448" TEXT="Newton&apos;s Methods">
+<node CREATED="1664942429179" FOLDED="true" ID="ID_259062298" LINK="https://en.wikipedia.org/wiki/Newton%27s_method" MODIFIED="1664942598141">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Newton's Method
+    </p>
+    <p>
+      (Wikipedia)
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1664942458161" ID="ID_860870060" MODIFIED="1664942588688">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      I really like the one-dimensional approach
+    </p>
+    <p>
+      used in the Wikipedia article about Newton's
+    </p>
+    <p>
+      method. Then, seeing the Jacobian and thee Hessian
+    </p>
+    <p>
+      as N-dimensional generalizations of the first
+    </p>
+    <p>
+      and second derivatives will really make things
+    </p>
+    <p>
+      easier to swallow.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node CREATED="1664942629354" FOLDED="true" ID="ID_1378536001" MODIFIED="1664943176685" TEXT="Quasi-Newton Methods">
+<node CREATED="1664942721741" ID="ID_1710076430" MODIFIED="1664943025135">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Section 2.2 &quot;Overview of Algorithms&quot;&#160;from
+    </p>
+    <p>
+      Nocedal &amp; Wright's book provides a smooth
+    </p>
+    <p>
+      introduction about what quasi-Newton methods
+    </p>
+    <p>
+      do. Then, chapter 6 dives into the specifics,
+    </p>
+    <p>
+      but honestly I still didn't take a look at.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Nocedal,&#160;J.,&#160;Wright,&#160;S.&#160;(2006).&#160;Numerical Optimization.
+    </p>
+    <p>
+      United States:&#160;Springer New York.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1664943038674" FOLDED="true" ID="ID_245441828" MODIFIED="1664943175395" TEXT="BFGS">
+<node CREATED="1664943046631" ID="ID_1307907978" MODIFIED="1664943165327">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Some colleagues have been using SciPy's
+    </p>
+    <p>
+      implementation of L-BFGS-B quite succesfully
+    </p>
+    <p>
+      for large scale problems (e.g. acoustic
+    </p>
+    <p>
+      simulation).
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 </node>
 </node>
@@ -416,6 +527,75 @@
 </node>
 <node CREATED="1657680174203" FOLDED="true" ID="ID_1519542786" MODIFIED="1662399173469" TEXT="Python on Android">
 <node CREATED="1657680292422" ID="ID_1518886704" LINK="https://docs.google.com/document/d/e/2PACX-1vQuzy59eA4TGLQakzg99uQ6EO9Rn-JpQ8bNW4zaQLbVz5j91dukHpkKfNrv8Sg2s3XCXOvZk0oJELAJ/pub" MODIFIED="1657680515164" TEXT="Tutorial: Termux+Python"/>
+</node>
+</node>
+<node CREATED="1664941687790" FOLDED="true" ID="ID_195490480" MODIFIED="1664943311970" POSITION="right" TEXT="Simulation">
+<node CREATED="1664941718790" FOLDED="true" ID="ID_1446793942" MODIFIED="1664943287251">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Discretization of ODE- and
+    </p>
+    <p>
+      PDE-based systems
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1664941802873" ID="ID_679557626" MODIFIED="1664942095667">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      For an undergraduate-level introduction
+    </p>
+    <p>
+      to discretization, see pages 256-269 from Green,&#160;R.&#160;A.,&#160;Lathi,&#160;B.&#160;P.&#160;(2018).&#160;Linear Systems and Signals.&#160;United Kingdom:&#160;Oxford University Press.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1664942220194" FOLDED="true" ID="ID_1711928688" LINK="https://www.youtube.com/watch?v=NXel87Do0bA" MODIFIED="1664942408250">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Lesson: Finite Difference Method for Solving ODEs: Example: Part 1 of 2
+    </p>
+    <p>
+      (YouTube)
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1664942283097" ID="ID_231406252" MODIFIED="1664942347916">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Although this video is about <i>solving</i>&#160;PDEs,
+    </p>
+    <p>
+      it provides a nice hint about how they can
+    </p>
+    <p>
+      be discretized.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 </node>
 </node>
 </node>
