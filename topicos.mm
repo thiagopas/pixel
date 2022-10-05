@@ -452,10 +452,7 @@
       implementation of L-BFGS-B quite succesfully
     </p>
     <p>
-      for large scale problems (e.g. acoustic
-    </p>
-    <p>
-      simulation).
+      for large scale problems (e.g. FWI).
     </p>
     <p>
       
