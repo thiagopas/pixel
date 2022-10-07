@@ -289,7 +289,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1648756268545" FOLDED="true" ID="ID_769954926" MODIFIED="1663080080922" POSITION="right" TEXT="Image reconstruction">
+<node CREATED="1648756268545" FOLDED="true" ID="ID_769954926" MODIFIED="1665103621583" POSITION="right" TEXT="Image reconstruction">
 <node CREATED="1648756284824" FOLDED="true" ID="ID_635881276" MODIFIED="1663080080914" TEXT="Regularization">
 <node CREATED="1648756542594" FOLDED="true" ID="ID_155755289" LINK="http://repositorio.utfpr.edu.br/jspui/bitstream/1/851/1/CT_CPGEI_M_Passarin%2c%20Thiago%20Alberto%20Rigo_2013.pdf" MODIFIED="1663080080914" TEXT="Disserta&#xe7;&#xe3;o de mestrado">
 <node CREATED="1648756632121" ID="ID_1314349294" MODIFIED="1648756669797" TEXT="3.2 Regulariza&#xe7;&#xe3;o em problemas inversos"/>
@@ -305,7 +305,7 @@
 <node CREATED="1648756807138" ID="ID_405391722" MODIFIED="1648756811917" TEXT="See Fig. 2"/>
 </node>
 </node>
-<node CREATED="1662398599521" FOLDED="true" ID="ID_456515333" MODIFIED="1663080080921" TEXT="Full Waveform Inversion">
+<node CREATED="1662398599521" FOLDED="true" ID="ID_456515333" MODIFIED="1665103619498" TEXT="Full Waveform Inversion">
 <node CREATED="1662398624153" ID="ID_1893546160" MODIFIED="1662398648287" TEXT="See Optimization &gt; Adjoint State Methods">
 <arrowlink DESTINATION="ID_1893546160" ENDARROW="Default" ENDINCLINATION="0;0;" ID="Arrow_ID_165812937" STARTARROW="None" STARTINCLINATION="0;0;"/>
 <linktarget COLOR="#b0b0b0" DESTINATION="ID_1893546160" ENDARROW="Default" ENDINCLINATION="0;0;" ID="Arrow_ID_165812937" SOURCE="ID_1893546160" STARTARROW="None" STARTINCLINATION="0;0;"/>
@@ -334,7 +334,7 @@
 <node CREATED="1613997311414" ID="ID_239783632" LINK="https://en.wikipedia.org/wiki/GNU_Octave" MODIFIED="1613997375187" TEXT="GNU Octave (Wikipedia)"/>
 </node>
 </node>
-<node CREATED="1606963590938" FOLDED="true" ID="ID_1728845974" MODIFIED="1664943251974" POSITION="right" TEXT="Optimization">
+<node CREATED="1606963590938" FOLDED="true" ID="ID_1728845974" MODIFIED="1665103871800" POSITION="right" TEXT="Optimization">
 <node CREATED="1648756912593" FOLDED="true" ID="ID_1761385891" MODIFIED="1664943191327" TEXT="Adjoint state methods">
 <node CREATED="1648756919745" ID="ID_1813753556" LINK="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/926428B3ACFAEA277DED39A1896A8109/S0022143000205911a.pdf/a-tutorial-on-adjoint-methods-and-their-use-for-data-assimilation-in-glaciology.pdf" MODIFIED="1662399131752" TEXT="Granzow, Glen D. &quot;A tutorial on adjoint methods and their use for data assimilation in glaciology.&quot; Journal of Glaciology 60.221 (2014): 440-446."/>
 </node>
@@ -357,8 +357,11 @@
 <node CREATED="1648757127666" ID="ID_1099533201" LINK="https://doi.org/10.1109/TIT.2007.909108" MODIFIED="1662399281116" TEXT="Tropp, Joel A., and Anna C. Gilbert. &quot;Signal recovery from random measurements via orthogonal matching pursuit.&quot; IEEE Transactions on information theory 53.12 (2007): 4655-4666."/>
 </node>
 </node>
-<node CREATED="1664942421094" FOLDED="true" ID="ID_1736581226" MODIFIED="1664942610448" TEXT="Newton&apos;s Methods">
-<node CREATED="1664942429179" FOLDED="true" ID="ID_259062298" LINK="https://en.wikipedia.org/wiki/Newton%27s_method" MODIFIED="1664942598141">
+<node CREATED="1665103645638" FOLDED="true" ID="ID_1963398496" MODIFIED="1665103817095" TEXT="Lagrange Multipliers">
+<node CREATED="1665103764308" ID="ID_1802340602" MODIFIED="1665103798754" TEXT="Appendix E. Lagrange Multipliers from &#xa;&#xa;Bishop, Christopher M., and Nasser M. Nasrabadi.&#xa0;Pattern recognition and machine learning. Vol. 4. No. 4. New York: springer, 2006."/>
+</node>
+<node CREATED="1664942421094" FOLDED="true" ID="ID_1736581226" MODIFIED="1665103848182" TEXT="Newton&apos;s Methods">
+<node CREATED="1664942429179" FOLDED="true" ID="ID_259062298" LINK="https://en.wikipedia.org/wiki/Newton%27s_method" MODIFIED="1665103846682">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -371,8 +374,7 @@
       (Wikipedia)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1664942458161" ID="ID_860870060" MODIFIED="1664942588688">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -398,12 +400,11 @@
       easier to swallow.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
-<node CREATED="1664942629354" FOLDED="true" ID="ID_1378536001" MODIFIED="1664943176685" TEXT="Quasi-Newton Methods">
+<node CREATED="1664942629354" FOLDED="true" ID="ID_1378536001" MODIFIED="1665103831132" TEXT="Quasi-Newton Methods">
 <node CREATED="1664942721741" ID="ID_1710076430" MODIFIED="1664943025135">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -435,8 +436,7 @@
       United States:&#160;Springer New York.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1664943038674" FOLDED="true" ID="ID_245441828" MODIFIED="1664943175395" TEXT="BFGS">
 <node CREATED="1664943046631" ID="ID_1307907978" MODIFIED="1664943165327">
@@ -461,8 +461,7 @@
       https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -540,8 +539,7 @@
       PDE-based systems
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1664941802873" ID="ID_679557626" MODIFIED="1664942095667">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -555,8 +553,7 @@
       to discretization, see pages 256-269 from Green,&#160;R.&#160;A.,&#160;Lathi,&#160;B.&#160;P.&#160;(2018).&#160;Linear Systems and Signals.&#160;United Kingdom:&#160;Oxford University Press.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1664942220194" FOLDED="true" ID="ID_1711928688" LINK="https://www.youtube.com/watch?v=NXel87Do0bA" MODIFIED="1664942408250">
 <richcontent TYPE="NODE"><html>
@@ -571,8 +568,7 @@
       (YouTube)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1664942283097" ID="ID_231406252" MODIFIED="1664942347916">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -589,8 +585,7 @@
       be discretized.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
